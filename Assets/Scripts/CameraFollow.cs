@@ -14,11 +14,11 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] float cursorInfluence = 0.2f;
     [SerializeField] float maxCursorOffset = 5f;
 
-    Camera camera;
+    Camera cam;
 
     void Start()
     {
-        camera = GetComponent<Camera>();
+        cam = GetComponent<Camera>();
 
         // If there is no player assigned, attempt to find it
         if (player == null)
@@ -52,7 +52,7 @@ public class CameraFollow : MonoBehaviour
         // Get mouse position
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = Mathf.Abs(transform.position.z - player.position.z);
-        Vector3 worldMousePos = camera.ScreenToWorldPoint(mousePos);
+        Vector3 worldMousePos = cam.ScreenToWorldPoint(mousePos);
 
         // Calculate direction from player to mouse
         Vector3 direction = worldMousePos - player.position;
