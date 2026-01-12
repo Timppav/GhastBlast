@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         HandlePlayerMovement();
+        HandleSpriteFlip();
     }
 
     private void HandlePlayerMovement()
@@ -36,21 +37,25 @@ public class PlayerController : MonoBehaviour
         {
             HandleWalkingSounds();
         }
-
-        bool flipSprite = movement.x < 0f;
-        _characterBody.flipX = flipSprite;
     }
 
     void HandleWalkingSounds()
     {
         if (Time.time >= _nextFootstepAudio) // Check if it's time to play the next footstep sound
         {
-            AudioManager.Instance.PlayAudio(_footstep, AudioManager.SoundType.SFX, 1f, false);
+            AudioManager.Instance.PlayAudio(_footstep, AudioManager.SoundType.SFX, 0.3f, false);
 
             // Calculate the next timestamp when a fooststep should be played if still walking
             // The audio frequency is calculated in a way that plays the audio twice during the walking animation loop
             float audioFrequency = _animator.GetCurrentAnimatorClipInfo(0)[0].clip.length / 2f;
             _nextFootstepAudio = Time.time + audioFrequency;
         }
+    }
+
+    void HandleSpriteFlip()
+    {
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        bool flipSprite = mousePosition.x < transform.position.x;
+        _characterBody.flipX = flipSprite;
     }
 }

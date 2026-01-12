@@ -9,6 +9,8 @@ public class PlayerStaffController : MonoBehaviour
     [SerializeField] float _shootFireRate;
     [SerializeField] float _specialFireRate;
     [SerializeField] float _specialSpreadAngle = 15f;
+    [SerializeField] Transform _flashlight;
+    [SerializeField] float _flashlightDefaultZRotation = -90f;
     float _nextShootFireTime;
     float _nextSpecialFireTime;
     Vector2 _lookDirection;
@@ -19,6 +21,7 @@ public class PlayerStaffController : MonoBehaviour
         
         SetLookDirection();
         RotateStaff();
+        HandleSpriteFlip();
 
         // Shoots when fire button is pressed/held down
         if (Input.GetButton("Fire1") && Time.time >= _nextShootFireTime)
@@ -67,5 +70,29 @@ public class PlayerStaffController : MonoBehaviour
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         _lookDirection = (mousePosition - (Vector2)transform.position).normalized;
+    }
+
+    void HandleSpriteFlip()
+    {
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        bool flipStaff = mousePosition.x < transform.position.x;
+        
+        // Flip the entire staff GameObject
+        Vector3 scale = transform.localScale;
+        scale.y = flipStaff ? -1f : 1f;
+        transform.localScale = scale;
+        
+        // Counter-flip the flashlight so it stays correctly oriented
+        if (_flashlight != null)
+        {
+            Vector3 flashlightScale = _flashlight.localScale;
+            flashlightScale.y = flipStaff ? -1f : 1f;
+            _flashlight.localScale = flashlightScale;
+            
+            // Also invert the Z rotation to maintain correct angle
+            Vector3 flashlightRotation = _flashlight.localEulerAngles;
+            flashlightRotation.z = flipStaff ? -_flashlightDefaultZRotation : _flashlightDefaultZRotation;
+            _flashlight.localEulerAngles = flashlightRotation;
+        }
     }
 }
