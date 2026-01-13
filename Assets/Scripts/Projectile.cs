@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] float _damage;
     [SerializeField] Rigidbody2D _rb;
     [SerializeField] ParticleSystem _hitParticles;
+    [SerializeField] AudioClip _enemyHitSound;
 
     public void InitializeProjectile(Vector2 direction)
     {
@@ -14,10 +15,24 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        // Destroy projectile upon hitting wall
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            DealDamage(collision.gameObject);
+            DestroyProjectile();
+        }
+
         if (collision.gameObject.CompareTag("Terrain"))
         {
             DestroyProjectile();
+        }
+    }
+
+    void DealDamage(GameObject target)
+    {
+        if (target.TryGetComponent(out EntityHealth entityHealth))
+        {
+            entityHealth.LoseHealth(_damage);
+            AudioManager.Instance.PlayAudio(_enemyHitSound, AudioManager.SoundType.SFX, 1.0f, false);
         }
     }
 

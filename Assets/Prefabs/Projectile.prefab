@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 490183721287599135}
   - component: {fileID: 1202773851760661638}
   - component: {fileID: 7171773386233391220}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Projectile
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -115,6 +115,7 @@ MonoBehaviour:
   _damage: 1
   _rb: {fileID: 1202773851760661638}
   _hitParticles: {fileID: 4234366204782194716, guid: e3ba053da57c85a46b0062444933dc4d, type: 3}
+  _enemyHitSound: {fileID: 8300000, guid: 6706c80bc9d9c2b458537cb9da874a02, type: 3}
 --- !u!1 &6168313617359649313
 GameObject:
   m_ObjectHideFlags: 0
