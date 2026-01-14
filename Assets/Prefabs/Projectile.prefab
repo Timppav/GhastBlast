@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cae0d9bbac765004aa2ab01216387628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _travelSpeed: 10
+  _travelSpeed: 15
   _damage: 1
   _rb: {fileID: 1202773851760661638}
   _hitParticles: {fileID: 4234366204782194716, guid: e3ba053da57c85a46b0062444933dc4d, type: 3}
