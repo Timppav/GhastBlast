@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -3578019587575532720, guid: b7c0becb6f8c3fb43bef8c9036774392, type: 3}
+  m_Sprite: {fileID: -7282886668606283007, guid: fcf07262f08705a499c6f5de78130c01, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -158,7 +158,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.01, y: -0.12}
+  m_Offset: {x: 0, y: -0.01}
   m_Radius: 0.3
 --- !u!114 &4280467351036700409
 MonoBehaviour:
@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19961989393061d4a85a73f08e9c85dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageDealer
+  _dps: 1
 --- !u!1 &5072488183183776402
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +186,7 @@ GameObject:
   - component: {fileID: 716608364877445902}
   - component: {fileID: 3586533013391204520}
   m_Layer: 7
-  m_Name: BasicEnemy
+  m_Name: SlimeEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -242,7 +243,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.01, y: -0.12}
+  m_Offset: {x: 0, y: -0.01}
   m_Radius: 0.3
 --- !u!114 &716608364877445902
 MonoBehaviour:
@@ -269,6 +270,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2fdd8e600e15134ab31b9bcfafccd8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityHealth
-  _maxHealth: 10
+  _maxHealth: 2
   _currentHealth: 0
   _healthRegen: 0
