@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DamageDealer : MonoBehaviour
 {
-    [SerializeField] float _dps;
+    [SerializeField] float _damage = 1f;
 
     void OnTriggerStay2D(Collider2D collision)
     {
@@ -13,7 +13,7 @@ public class DamageDealer : MonoBehaviour
 
         if (collision.gameObject.TryGetComponent(out EntityHealth entityHealth))
         {
-            entityHealth.LoseHealth(Time.fixedDeltaTime * _dps);
+            entityHealth.LoseHealth(_damage);
         }
     }
 }
