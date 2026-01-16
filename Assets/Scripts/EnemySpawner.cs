@@ -21,6 +21,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] GameObject _spawnWarningPrefab;
     [SerializeField] float _warningDuration = 1f;
 
+    [Header("Health Bar")]
+    [SerializeField] GameObject _enemyHealthBarPrefab;
+
     void Start()
     {
         SetEnemySpawnPositions();
@@ -98,7 +101,41 @@ public class EnemySpawner : MonoBehaviour
             Destroy(warning);
         }
 
-        Instantiate(GetRandomEnemyPrefab(), spawnPosition, Quaternion.identity);
+        Enemy enemy = Instantiate(GetRandomEnemyPrefab(), spawnPosition, Quaternion.identity);
+
+        // Spawn health bar for the enemy
+        if (_enemyHealthBarPrefab != null && enemy != null)
+        {
+            GameObject healthBarObj = Instantiate(_enemyHealthBarPrefab);
+
+            EntityHealth entityHealth = enemy.GetComponent<EntityHealth>();
+
+            if (entityHealth != null)
+            {
+                // Set up the HealthBar component with the entity's health
+                HealthBar healthBar = healthBarObj.GetComponent<HealthBar>();
+                if (healthBar != null)
+                {
+                    healthBar.SetEntityHealth(entityHealth);
+                }
+                
+                // Set up the health bar follower to follow the enemy
+                HealthBarFollower follower = healthBarObj.GetComponent<HealthBarFollower>();
+                if (follower != null)
+                {
+                    follower.target = enemy.transform;
+                }
+                
+                // Subscribe to death event to destroy health bar
+                entityHealth.OnDeath += () => 
+                {
+                    if (healthBarObj != null)
+                    {
+                        Destroy(healthBarObj);
+                    }
+                };
+            }
+        }
     }
 
     void HandleGameDifficultyIncrease()

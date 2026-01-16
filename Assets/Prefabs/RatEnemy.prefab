@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 7408342901431106201}
   - component: {fileID: 4059322355505279984}
   - component: {fileID: 4280467351036700409}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: DamageDealer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2fdd8e600e15134ab31b9bcfafccd8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityHealth
-  _maxHealth: 1
+  _maxHealth: 2
   _currentHealth: 0
   _healthRegen: 0
 --- !u!195 &-4911805591096044167
