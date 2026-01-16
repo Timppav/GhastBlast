@@ -45,14 +45,4 @@ public class EntityHealth : MonoBehaviour
     {
         OnDeath?.Invoke();
     }
-
-    public float GetCurrentHealth()
-    {
-        return _currentHealth;
-    }
-
-    public float GetMaxHealth()
-    {
-        return _maxHealth;
-    }
 }

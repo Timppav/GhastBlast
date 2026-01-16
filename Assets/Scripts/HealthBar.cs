@@ -14,24 +14,6 @@ public class HealthBar : MonoBehaviour
         }
     }
 
-    public void SetEntityHealth(EntityHealth entityHealth)
-    {
-        // Unsubscribe from old entity if exists
-        if (_entityHealth != null)
-        {
-            _entityHealth.OnHealthChanged -= OnHealthChanged;
-        }
-
-        // Set new entity and subscribe
-        _entityHealth = entityHealth;
-        if (_entityHealth != null)
-        {
-            _entityHealth.OnHealthChanged += OnHealthChanged;
-            // Initialize the health bar with current health
-            OnHealthChanged(_entityHealth.GetCurrentHealth(), _entityHealth.GetMaxHealth());
-        }
-    }
-
     void OnDisable()
     {
         if (_entityHealth != null)
