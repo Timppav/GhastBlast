@@ -3,6 +3,7 @@ using UnityEngine;
 public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] CanvasGroup _mainMenuButtonsCG;
+    [SerializeField] CanvasGroup _settingsMenuCG;
     [SerializeField] CanvasGroup _quitConfirmationCG;
     CanvasGroup _mainMenuCG;
 
@@ -45,6 +46,12 @@ public class MainMenuManager : MonoBehaviour
     {
         CloseMainMenu();
         GameManager.Instance.StartGame();
+    }
+
+    public void SettingsMenuToggle(bool open)
+    {
+        CanvasGroupSetState(_mainMenuButtonsCG, !open);
+        CanvasGroupSetState(_settingsMenuCG, open);
     }
 
     public void Quit()

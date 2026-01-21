@@ -45,16 +45,22 @@ public class AudioManager : MonoBehaviour
     public void ChangeMasterVolume(float volume)
     {
         _mixer.SetFloat(MASTER_VOLUME_NAME, Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("Settings.MasterVolume", volume);
+        PlayerPrefs.Save();
     }
 
     public void ChangeMusicVolume(float volume)
     {
         _mixer.SetFloat(MUSIC_VOLUME_NAME, Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("Settings.MusicVolume", volume);
+        PlayerPrefs.Save();
     }
 
-    public void ChangeSfxVolume(float volume)
+    public void ChangeSFXVolume(float volume)
     {
         _mixer.SetFloat(SFX_VOLUME_NAME, Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("Settings.SFXVolume", volume);
+        PlayerPrefs.Save();
     }
 
     public void PlayAudio(AudioClip audioClip, SoundType soundType, float volume, bool loop)
