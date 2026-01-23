@@ -6,9 +6,10 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set; }
 
     [SerializeField] AudioMixer _mixer;
-    [SerializeField] AudioClip _music;
+
     AudioMixerGroup _musicGroup;
     AudioMixerGroup _sfxGroup;
+    AudioSource _currentMusicSource;
 
     const string MUSIC_GROUP_NAME = "Music";
     const string SFX_GROUP_NAME = "SFX";
@@ -23,14 +24,6 @@ public class AudioManager : MonoBehaviour
         Music
     }
 
-    void Init()
-    {
-        _musicGroup = _mixer.FindMatchingGroups(MUSIC_GROUP_NAME)[0];
-        _sfxGroup = _mixer.FindMatchingGroups(SFX_GROUP_NAME)[0];
-
-        PlayAudio(_music, SoundType.Music, 1.0f, true);
-    }
-
     void Awake()
     {
         if (Instance != null)
@@ -38,8 +31,40 @@ public class AudioManager : MonoBehaviour
             Destroy(this);
         }
         Instance = this;
+        DontDestroyOnLoad(gameObject);
 
         Init();
+    }
+
+    void Init()
+    {
+        _musicGroup = _mixer.FindMatchingGroups(MUSIC_GROUP_NAME)[0];
+        _sfxGroup = _mixer.FindMatchingGroups(SFX_GROUP_NAME)[0];
+    }
+
+    public void PlaySceneMusic(AudioClip clip)
+    {
+        if (_currentMusicSource != null && _currentMusicSource.clip == clip)
+        {
+            return;
+        }
+
+        if (_currentMusicSource != null)
+        {
+            Destroy(_currentMusicSource.gameObject);
+        }
+
+        if (clip == null) return;
+
+        GameObject musicObject = new GameObject(clip.name + " Music Source");
+        DontDestroyOnLoad(musicObject);
+
+        _currentMusicSource = musicObject.AddComponent<AudioSource>();
+        _currentMusicSource.clip = clip;
+        _currentMusicSource.volume = 1.0f;
+        _currentMusicSource.loop = true;
+        _currentMusicSource.outputAudioMixerGroup = _musicGroup;
+        _currentMusicSource.Play();
     }
 
     public void ChangeMasterVolume(float volume)
@@ -70,7 +95,6 @@ public class AudioManager : MonoBehaviour
         audioSource.clip = audioClip;
         audioSource.volume = volume;
         audioSource.loop = loop;
-        audioSource.Play();
 
         // Set which AudioMixerGroup the AudioSource is going to play through
         switch (soundType)
@@ -87,7 +111,6 @@ public class AudioManager : MonoBehaviour
 
         audioSource.Play();
 
-        // Destroy the AudioSource if loop is set to false
         if (!loop)
         {
             Destroy(audioSource.gameObject, audioClip.length);
