@@ -90,7 +90,6 @@ public class InGameUIManager : MonoBehaviour
     {
         CanvasGroupSetState(_pauseMenuPanelCG, false);
         UIManager.Instance.OpenQuitConfirmation(() => {
-            // This runs when quit confirmation closes
             CanvasGroupSetState(_pauseMenuPanelCG, true);
         });
     }

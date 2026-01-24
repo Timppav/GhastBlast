@@ -4,7 +4,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] float _movementSpeed;
     [SerializeField] SpriteRenderer _characterBody;
-    [SerializeField] Animator _animator;
+    [SerializeField] public Animator _animator;
     [SerializeField] AudioClip _footstep;
     Rigidbody2D _rb;
 
