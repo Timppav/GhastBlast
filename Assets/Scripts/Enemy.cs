@@ -6,7 +6,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] AudioClip _deathSound;
     [SerializeField] SpriteRenderer _characterBody;
     [SerializeField] Animator _animator;
+
+    [Header("Enemy Specific Config")]
     [SerializeField] float _idleDuration = 2f;
+    [SerializeField] float _aggroDistance = 10f;
+    [SerializeField] float _initialSpeed = 0.5f;
+    [SerializeField] float _aggroSpeed = 3f;
 
     EntityHealth _entityHealth;
     NavMeshAgent _agent;
@@ -14,6 +19,7 @@ public class Enemy : MonoBehaviour
     Vector3 _lastPosition;
     float _idleTimer;
     bool _isIdle = true;
+    bool _isAggro = false;
 
     void Awake()
     {
@@ -45,11 +51,12 @@ public class Enemy : MonoBehaviour
             }
             return;
         }
-        
-        if (_target != null && _agent.enabled)
+
+        if (!_isIdle && _target != null && _agent.enabled)
         {
             _agent.SetDestination(_target.transform.position);
-            HandleAnimation();
+            CheckAggro();
+            HandleWalking();
             HandleSpriteFlip();
         }
     }
@@ -59,10 +66,28 @@ public class Enemy : MonoBehaviour
         _entityHealth.OnDeath -= DestroyEnemy;
     }
 
-    void HandleAnimation()
+    void CheckAggro()
+    {
+        if (_target != null && Vector3.Distance(_lastPosition, _target.transform.position) <= _aggroDistance)
+        {
+            _isAggro = true;
+        }
+    }
+
+    void HandleWalking()
     {
         bool isMoving = _agent.velocity.magnitude > 0.1f;
         _animator.SetBool("isWalking", isMoving);
+
+        if (_isAggro)
+        {
+            _agent.speed = _aggroSpeed;
+        } else {
+            _agent.speed = _initialSpeed;
+        }
+
+        float animationSpeed = _agent.speed / 3f;
+        _animator.SetFloat("speed", animationSpeed);
     }
 
     void HandleSpriteFlip()

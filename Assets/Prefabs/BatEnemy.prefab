@@ -642,6 +642,10 @@ MonoBehaviour:
   _characterBody: {fileID: 5944387279188060462}
   _animator: {fileID: 2081445704640558191}
   _idleDuration: 2
+  _aggroDistance: 6
+  _initialSpeed: 0
+  _aggroSpeed: 5.2
+  _initialAnimationSpeed: 0
 --- !u!114 &3586533013391204520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -669,7 +673,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 4
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

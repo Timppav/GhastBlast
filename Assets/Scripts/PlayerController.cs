@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
         _rb.linearVelocity = movement * _movementSpeed;
 
         bool characterIsWalking = movement.magnitude > 0f;
+        float animationSpeed = _movementSpeed / 5f;
+        _animator.SetFloat("speed", animationSpeed);
         _animator.SetBool("isWalking", characterIsWalking);
 
         if (characterIsWalking)
