@@ -203,6 +203,7 @@ GameObject:
   - component: {fileID: 1587936597168623767}
   - component: {fileID: 5944387279188060462}
   - component: {fileID: 5527192529422084814}
+  - component: {fileID: 8290295832265923108}
   m_Layer: 0
   m_Name: ArmlessVisuals
   m_TagString: Untagged
@@ -306,6 +307,64 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8290295832265923108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2993655930967236422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.2D.Runtime::UnityEngine.Rendering.Universal.ShadowCaster2D
+  m_ShadowGroup: 0
+  m_Priority: 10
+  m_ComponentVersion: 5
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_AlphaCutoff: 0.1
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.27574456, y: -0.5040046, z: 0}
+  - {x: -0.26822287, y: -0.20265862, z: 0}
+  - {x: -0.3923642, y: -0.05448982, z: 0}
+  - {x: -0.39988595, y: 0.35984036, z: 0}
+  - {x: -0.26021373, y: 0.49813968, z: 0}
+  - {x: 0.18429261, y: 0.49813968, z: 0}
+  - {x: 0.32845682, y: 0.3820074, z: 0}
+  - {x: 0.33581296, y: -0.00057017803, z: 0}
+  - {x: 0.21632913, y: -0.14659473, z: 0}
+  - {x: 0.19965786, y: -0.49199095, z: 0}
+  m_ShapePathHash: -1827486406
+  m_InstanceId: 0
+  m_ShadowShape2DComponent: {fileID: 0}
+  m_ShadowShape2DProvider:
+    rid: -2
+  m_ShadowCastingSource: 1
+  m_ShadowMesh:
+    m_Mesh: {fileID: 0}
+    m_LocalBounds:
+      m_Center: {x: -0.032036483, y: -0.0029324293, z: 0}
+      m_Extent: {x: 0.36784947, y: 0.50107217, z: 0}
+    m_EdgeProcessing: 1
+    m_TrimEdge: 0.05
+    m_FlipX: 0
+    m_FlipY: 0
+    m_InitialTrim: 0.05
+  m_CastingOption: 1
+  m_PreviousTrimEdge: 0.05
+  m_PreviousEdgeProcessing: 1
+  m_PreviousShadowCastingSource: 1
+  m_PreviousShadowShape2DSource: {fileID: 5944387279188060462}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1 &3051152375297436924
 GameObject:
   m_ObjectHideFlags: 0

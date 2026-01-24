@@ -43,6 +43,7 @@ public class Enemy : MonoBehaviour
         _lastPosition = transform.position;
 
         _entityHealth.OnDeath += DestroyEnemy;
+        _entityHealth.OnDamageTaken += HandleDamageTaken;
         _spawner = FindFirstObjectByType<EnemySpawner>();
     }
 
@@ -70,6 +71,12 @@ public class Enemy : MonoBehaviour
     void OnDisable()
     {
         _entityHealth.OnDeath -= DestroyEnemy;
+        _entityHealth.OnDamageTaken -= HandleDamageTaken;
+    }
+
+    void HandleDamageTaken()
+    {
+        _isAggro = true;
     }
 
     void CheckAggro()

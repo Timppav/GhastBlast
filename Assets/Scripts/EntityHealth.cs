@@ -15,6 +15,7 @@ public class EntityHealth : MonoBehaviour
 
     public Action OnDeath;
     public Action<float, float> OnHealthChanged;
+    public Action OnDamageTaken;
 
     void Awake()
     {
@@ -37,6 +38,7 @@ public class EntityHealth : MonoBehaviour
         _currentHealth -= healthLost;
         _lastDamageTime = Time.time;
         OnHealthChanged?.Invoke(Mathf.Clamp(_currentHealth, 0, _maxHealth), _maxHealth);
+        OnDamageTaken?.Invoke();
 
         if (_currentHealth <= 0)
         {

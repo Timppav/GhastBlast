@@ -448,6 +448,7 @@ GameObject:
   - component: {fileID: 716608364877445902}
   - component: {fileID: 3586533013391204520}
   - component: {fileID: -8548724526366966841}
+  - component: {fileID: 5314419129918477842}
   m_Layer: 7
   m_Name: SlimeEnemy
   m_TagString: Enemy
@@ -568,6 +569,62 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &5314419129918477842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5072488183183776402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.2D.Runtime::UnityEngine.Rendering.Universal.ShadowCaster2D
+  m_ShadowGroup: 0
+  m_Priority: 0
+  m_ComponentVersion: 5
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_AlphaCutoff: 0.1
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.18066743, y: -0.31950766, z: 0}
+  - {x: -0.32978293, y: -0.1905928, z: 0}
+  - {x: -0.31487966, y: 0.060339183, z: 0}
+  - {x: -0.11689451, y: 0.2675801, z: 0}
+  - {x: 0.12050328, y: 0.25934356, z: 0}
+  - {x: 0.33202237, y: 0.073203705, z: 0}
+  - {x: 0.32876366, y: -0.18066737, z: 0}
+  - {x: 0.19781011, y: -0.32017702, z: 0}
+  m_ShapePathHash: -313766332
+  m_InstanceId: 0
+  m_ShadowShape2DComponent: {fileID: 0}
+  m_ShadowShape2DProvider:
+    rid: -2
+  m_ShadowCastingSource: 1
+  m_ShadowMesh:
+    m_Mesh: {fileID: 0}
+    m_LocalBounds:
+      m_Center: {x: 0.001119703, y: -0.026298463, z: 0}
+      m_Extent: {x: 0.33090264, y: 0.29387856, z: 0}
+    m_EdgeProcessing: 1
+    m_TrimEdge: 0
+    m_FlipX: 0
+    m_FlipY: 0
+    m_InitialTrim: 0
+  m_CastingOption: 1
+  m_PreviousTrimEdge: 0
+  m_PreviousEdgeProcessing: 1
+  m_PreviousShadowCastingSource: 1
+  m_PreviousShadowShape2DSource: {fileID: 3980598511830302297}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1 &6017880551494558383
 GameObject:
   m_ObjectHideFlags: 0
