@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] AudioClip _deathSound;
     [SerializeField] SpriteRenderer _characterBody;
     [SerializeField] Animator _animator;
+    [SerializeField] CircleCollider2D _damgeDealer;
 
     [Header("Enemy Specific Config")]
     [SerializeField] float _idleDuration = 2f;
@@ -119,8 +120,10 @@ public class Enemy : MonoBehaviour
     public void DestroyEnemy()
     {
         if (_isDead) return;
+
         _isDead = true;
 
+        _damgeDealer.enabled = false;
         _animator.SetBool("isDead", true);
         _agent.enabled = false;
         AudioManager.Instance.PlayAudio(_deathSound, AudioManager.SoundType.SFX, 1.0f, false);
@@ -143,6 +146,7 @@ public class Enemy : MonoBehaviour
         // Reset enemy state
         _animator.SetBool("isDead", false);
         _animator.SetBool("isWalking", false);
+        _damgeDealer.enabled = true;
         _agent.enabled = true;
         _isIdle = true;
         _isAggro = false;

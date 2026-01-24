@@ -6,6 +6,7 @@ public class PlayerStaffController : MonoBehaviour
     [SerializeField] AudioClip _shootSound;
     [SerializeField] AudioClip _specialSound;
     [SerializeField] Transform _tip;
+    [SerializeField] float _projectileDamage = 10f;
     [SerializeField] float _shootFireRate;
     [SerializeField] float _specialFireRate;
     [SerializeField] float _specialSpreadAngle = 15f;
@@ -47,7 +48,7 @@ public class PlayerStaffController : MonoBehaviour
     {
         AudioManager.Instance.PlayAudio(_shootSound, AudioManager.SoundType.SFX, 0.4f, false);
         Projectile newProjectile = Instantiate(_projectile, _tip.position, Quaternion.identity);
-        newProjectile.InitializeProjectile(_lookDirection);
+        newProjectile.InitializeProjectile(_lookDirection, _projectileDamage);
     }
 
     void Special()
@@ -62,7 +63,7 @@ public class PlayerStaffController : MonoBehaviour
             Vector2 spreadDirection = Quaternion.Euler(0, 0, angleOffset) * _lookDirection;
 
             Projectile newProjectile = Instantiate(_projectile, _tip.position, Quaternion.identity);
-            newProjectile.InitializeProjectile(spreadDirection);
+            newProjectile.InitializeProjectile(spreadDirection, _projectileDamage);
         }
     }
 

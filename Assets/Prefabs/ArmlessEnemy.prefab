@@ -117,6 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthBar
   _hpBarFill: {fileID: 5454570859178040957}
   _entityHealth: {fileID: 3586533013391204520}
+  _healthText: {fileID: 0}
 --- !u!1 &2869184779381190804
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,7 +355,7 @@ MonoBehaviour:
     m_TrimEdge: 0.05
     m_FlipX: 0
     m_FlipY: 0
-    m_InitialTrim: 0.05
+    m_InitialTrim: 0
   m_CastingOption: 1
   m_PreviousTrimEdge: 0.05
   m_PreviousEdgeProcessing: 1
@@ -446,7 +447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19961989393061d4a85a73f08e9c85dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageDealer
-  _damage: 1
+  _damage: 35
 --- !u!1 &4165017690548777235
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,6 +626,7 @@ MonoBehaviour:
   _deathSound: {fileID: 8300000, guid: 1756598727b374d419c15bfb66dcd783, type: 3}
   _characterBody: {fileID: 5944387279188060462}
   _animator: {fileID: 5527192529422084814}
+  _damgeDealer: {fileID: 4059322355505279984}
   _idleDuration: 2
   _aggroDistance: 13
   _initialSpeed: 0.2
@@ -642,11 +644,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2fdd8e600e15134ab31b9bcfafccd8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityHealth
-  _maxHealth: 4
+  _maxHealth: 40
   _currentHealth: 0
-  _healthRegen: 1
-  _invulnerabilityDuration: 0.2
+  _healthRegen: 5
   _healthRegenDelay: 1.5
+  _invulnerabilityDuration: 0.2
+  _isPlayer: 0
+  _torch: {fileID: 0}
+  _spriteRenderer: {fileID: 5944387279188060462}
+  _flashSpeed: 0.1
+  _hitSound: {fileID: 8300000, guid: 6706c80bc9d9c2b458537cb9da874a02, type: 3}
 --- !u!195 &-6185021846197173977
 NavMeshAgent:
   m_ObjectHideFlags: 0

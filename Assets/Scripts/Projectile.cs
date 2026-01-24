@@ -3,13 +3,14 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] float _travelSpeed;
-    [SerializeField] float _damage;
     [SerializeField] Rigidbody2D _rb;
     [SerializeField] ParticleSystem _hitParticles;
-    [SerializeField] AudioClip _enemyHitSound;
 
-    public void InitializeProjectile(Vector2 direction)
+    float _damage;
+
+    public void InitializeProjectile(Vector2 direction, float damage)
     {
+        _damage = damage;
         Launch(direction);
     }
 
@@ -32,7 +33,6 @@ public class Projectile : MonoBehaviour
         if (target.TryGetComponent(out EntityHealth entityHealth))
         {
             entityHealth.LoseHealth(_damage);
-            AudioManager.Instance.PlayAudio(_enemyHitSound, AudioManager.SoundType.SFX, 1.0f, false);
         }
     }
 

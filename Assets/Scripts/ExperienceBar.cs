@@ -54,7 +54,6 @@ public class ExperienceBar : MonoBehaviour
     {
         _currentLevel = newLevel;
         UpdateLevelDisplay();
-        Debug.Log($"Level Up! Now level {newLevel}");
     }
 
     void UpdateExpDisplay()
