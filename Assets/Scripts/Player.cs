@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -14,12 +15,20 @@ public class Player : MonoBehaviour
     PlayerController _playerController;
     PlayerStaffController _playerStaffController;
 
+    public Action<float, float> OnExpChanged;
+    public Action<float> OnLevelUp;
+
     private void OnEnable()
     {
         _playerHealth = GetComponent<EntityHealth>();
         _playerController = GetComponent<PlayerController>();
         _playerStaffController = GetComponentInChildren<PlayerStaffController>();
         _playerHealth.OnDeath += HandleDeath;
+    }
+
+    private void Start()
+    {
+        OnExpChanged?.Invoke(_playerExp, _nextLevelExp);
     }
 
     private void OnDisable()
@@ -30,12 +39,11 @@ public class Player : MonoBehaviour
     public void AddExperience(float amount) {
         if (_playerLevel >= _maxPlayerLevel)
         {
-            Debug.Log("Max level reached!");
             return;
         }
 
         _playerExp += amount;
-        Debug.Log($"Gained {amount} exp. Current: {_playerExp}/{_nextLevelExp}");
+        OnExpChanged?.Invoke(_playerExp, _nextLevelExp);
 
         while (_playerExp >= _nextLevelExp && _playerLevel < _maxPlayerLevel)
         {
@@ -54,7 +62,8 @@ public class Player : MonoBehaviour
             AudioManager.Instance.PlayAudio(_levelUpSound, AudioManager.SoundType.SFX, 1.0f, false);
         }
 
-        Debug.Log($"Level Up! Now level {_playerLevel}");
+        OnLevelUp?.Invoke(_playerLevel);
+        OnExpChanged?.Invoke(_playerExp, _nextLevelExp);
     }
 
     public float GetPlayerLevel() => _playerLevel;

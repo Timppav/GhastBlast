@@ -175,10 +175,8 @@ MonoBehaviour:
   m_ShapePath:
   - {x: -0.27574456, y: -0.31599817, z: 0}
   - {x: -0.31459695, y: -0.23173437, z: 0}
-  - {x: -0.44280028, y: 0.0077294856, z: 0}
-  - {x: -0.43712753, y: 0.115611225, z: 0}
-  - {x: -0.26559567, y: 0.3106006, z: 0}
-  - {x: -0.21097398, y: 0.33251497, z: 0}
+  - {x: -0.34195852, y: -0.053245723, z: 0}
+  - {x: -0.27386102, y: 0.058507234, z: 0}
   - {x: -0.044000864, y: 0.1400322, z: 0}
   - {x: 0.2434063, y: 0.09104505, z: 0}
   - {x: 0.33581296, y: -0.00057017803, z: 0}
@@ -186,7 +184,7 @@ MonoBehaviour:
   - {x: 0.39266536, y: -0.34364295, z: 0}
   - {x: 0.30709013, y: -0.40246412, z: 0}
   - {x: -0.077350676, y: -0.39288276, z: 0}
-  m_ShapePathHash: 1668672944
+  m_ShapePathHash: -7751885
   m_InstanceId: 0
   m_ShadowShape2DComponent: {fileID: 0}
   m_ShadowShape2DProvider:
@@ -195,13 +193,13 @@ MonoBehaviour:
   m_ShadowMesh:
     m_Mesh: {fileID: 0}
     m_LocalBounds:
-      m_Center: {x: -0.025067449, y: -0.034974575, z: 0}
-      m_Extent: {x: 0.41773283, y: 0.36748955, z: 0}
+      m_Center: {x: 0.025353432, y: -0.13121596, z: 0}
+      m_Extent: {x: 0.36731195, y: 0.27124816, z: 0}
     m_EdgeProcessing: 1
     m_TrimEdge: 0.05
     m_FlipX: 0
     m_FlipY: 0
-    m_InitialTrim: 0.05
+    m_InitialTrim: 0
   m_CastingOption: 1
   m_PreviousTrimEdge: 0.05
   m_PreviousEdgeProcessing: 1
@@ -486,6 +484,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthBar
   _hpBarFill: {fileID: 9023514567079083831}
   _entityHealth: {fileID: 3586533013391204520}
+  _healthText: {fileID: 0}
 --- !u!1 &5072488183183776402
 GameObject:
   m_ObjectHideFlags: 0

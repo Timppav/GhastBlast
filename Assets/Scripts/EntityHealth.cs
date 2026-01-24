@@ -26,6 +26,7 @@ public class EntityHealth : MonoBehaviour
     void Start()
     {
         InvokeRepeating(nameof(HandleHealthRegen), 5f, 5f);
+        OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
     }
 
     public void LoseHealth(float healthLost)
@@ -43,8 +44,7 @@ public class EntityHealth : MonoBehaviour
         if (_currentHealth <= 0)
         {
             Death();
-        } else
-        {
+        } else {
             StartInvulnerability();
         }
     }
@@ -77,4 +77,7 @@ public class EntityHealth : MonoBehaviour
     {
         OnDeath?.Invoke();
     }
+
+    public float GetCurrentHealth() => _currentHealth;
+    public float GetMaxHealth() => _maxHealth;
 }

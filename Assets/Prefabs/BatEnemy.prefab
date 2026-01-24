@@ -117,6 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthBar
   _hpBarFill: {fileID: 1576581249540393814}
   _entityHealth: {fileID: 3586533013391204520}
+  _healthText: {fileID: 0}
 --- !u!1 &2993655930967236422
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,16 +255,16 @@ MonoBehaviour:
   m_AlphaCutoff: 0.1
   m_ApplyToSortingLayers: 00000000
   m_ShapePath:
-  - {x: -0.29923153, y: -0.12736681, z: 0}
-  - {x: -0.48456097, y: 0.07595071, z: 0}
-  - {x: -0.46222687, y: 0.23229167, z: 0}
+  - {x: -0.25286695, y: -0.13579676, z: 0}
+  - {x: -0.32017756, y: 0.03801608, z: 0}
+  - {x: -0.24726388, y: 0.19435702, z: 0}
   - {x: -0.114730835, y: 0.22640339, z: 0}
-  - {x: -0.0769577, y: 0.36071452, z: 0}
-  - {x: 0.13521862, y: 0.4612194, z: 0}
+  - {x: 0.036846235, y: 0.21319091, z: 0}
+  - {x: 0.19422807, y: 0.23782647, z: 0}
   - {x: 0.3883276, y: 0.064478844, z: 0}
   - {x: 0.35297918, y: -0.26464912, z: 0}
   - {x: 0.047727585, y: -0.27665585, z: 0}
-  m_ShapePathHash: -1946361453
+  m_ShapePathHash: 1504617453
   m_InstanceId: 0
   m_ShadowShape2DComponent: {fileID: 0}
   m_ShadowShape2DProvider:
@@ -272,8 +273,8 @@ MonoBehaviour:
   m_ShadowMesh:
     m_Mesh: {fileID: 0}
     m_LocalBounds:
-      m_Center: {x: -0.048116684, y: 0.09228176, z: 0}
-      m_Extent: {x: 0.43644428, y: 0.3689376, z: 0}
+      m_Center: {x: 0.03407502, y: -0.019414693, z: 0}
+      m_Extent: {x: 0.35425258, y: 0.25724116, z: 0}
     m_EdgeProcessing: 1
     m_TrimEdge: 0.05
     m_FlipX: 0
