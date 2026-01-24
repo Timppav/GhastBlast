@@ -28,7 +28,8 @@ public class AudioManager : MonoBehaviour
     {
         if (Instance != null)
         {
-            Destroy(this);
+            Destroy(gameObject);
+            return;
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
@@ -44,7 +45,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySceneMusic(AudioClip clip)
     {
-        if (_currentMusicSource != null && _currentMusicSource.clip == clip)
+        if (_currentMusicSource != null && _currentMusicSource.clip == clip && _currentMusicSource.isPlaying)
         {
             return;
         }
@@ -52,6 +53,7 @@ public class AudioManager : MonoBehaviour
         if (_currentMusicSource != null)
         {
             Destroy(_currentMusicSource.gameObject);
+            _currentMusicSource = null;
         }
 
         if (clip == null) return;
@@ -90,22 +92,19 @@ public class AudioManager : MonoBehaviour
 
     public void PlayAudio(AudioClip audioClip, SoundType soundType, float volume, bool loop)
     {
-        GameObject newAudioSource = new(audioClip.name + " Source");
+        GameObject newAudioSource = new GameObject(audioClip.name + " Source");
         AudioSource audioSource = newAudioSource.AddComponent<AudioSource>();
         audioSource.clip = audioClip;
         audioSource.volume = volume;
         audioSource.loop = loop;
 
-        // Set which AudioMixerGroup the AudioSource is going to play through
         switch (soundType)
         {
             case SoundType.SFX:
-                audioSource.outputAudioMixerGroup = Instance._sfxGroup;
+                audioSource.outputAudioMixerGroup = _sfxGroup;
                 break;
             case SoundType.Music:
-                audioSource.outputAudioMixerGroup = Instance._musicGroup;
-                break;
-            default:
+                audioSource.outputAudioMixerGroup = _musicGroup;
                 break;
         }
 
@@ -113,7 +112,14 @@ public class AudioManager : MonoBehaviour
 
         if (!loop)
         {
-            Destroy(audioSource.gameObject, audioClip.length);
+            // Use a coroutine with WaitForSecondsRealtime instead
+            StartCoroutine(DestroyAudioSourceAfterPlay(audioSource.gameObject, audioClip.length));
         }
+    }
+
+    System.Collections.IEnumerator DestroyAudioSourceAfterPlay(GameObject audioSourceObject, float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+        Destroy(audioSourceObject);
     }
 }

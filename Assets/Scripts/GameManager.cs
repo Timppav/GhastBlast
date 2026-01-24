@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour
     {
         if (Instance != null)
         {
-            Destroy(this);
+            Destroy(gameObject);
+            return;
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
@@ -95,9 +96,24 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ResetGame()
+    public void PauseGame()
     {
         Time.timeScale = 0f;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+    }
+
+    public void ResetGame()
+    {
+        StopAllCoroutines();
+        
+        if (_loadingScreen != null)
+            _loadingScreen.SetActive(false);
+        
+        Time.timeScale = 1f;
         _inGameUIManager = null;
         SceneManager.LoadScene("MainMenu");
     }

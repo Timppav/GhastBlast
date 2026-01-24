@@ -3,14 +3,19 @@ using UnityEngine;
 public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] CanvasGroup _mainMenuButtonsCG;
-    [SerializeField] CanvasGroup _settingsMenuCG;
-    [SerializeField] CanvasGroup _quitConfirmationCG;
     CanvasGroup _mainMenuCG;
 
     void Awake()
     {
         _mainMenuCG = GetComponent<CanvasGroup>();
         OpenMainMenu();
+    }
+
+    void CanvasGroupSetState(CanvasGroup canvasGroup, bool state)
+    {
+        canvasGroup.alpha = state ? 1.0f : 0.0f;
+        canvasGroup.interactable = state;
+        canvasGroup.blocksRaycasts = state;
     }
 
     public void OpenMainMenu()
@@ -22,44 +27,31 @@ public class MainMenuManager : MonoBehaviour
     {
         CanvasGroupSetState(_mainMenuCG, false);
     }
-
-    void CanvasGroupSetState(CanvasGroup canvasGroup, bool state)
-    {
-        canvasGroup.alpha = state ? 1.0f : 0.0f;
-        canvasGroup.interactable = state;
-        canvasGroup.blocksRaycasts = state;
-    }
-
-    public void OpenQuitConfirmation()
-    {
-        CanvasGroupSetState(_quitConfirmationCG, true);
-        CanvasGroupSetState(_mainMenuButtonsCG, false);
-    }
-
-    public void CloseQuitConfirmation()
-    {
-        CanvasGroupSetState(_quitConfirmationCG, false);
-        CanvasGroupSetState(_mainMenuButtonsCG, true);
-    }
-
+    
     public void Play()
     {
         CloseMainMenu();
         GameManager.Instance.StartGame();
     }
 
-    public void SettingsMenuToggle(bool open)
+    public void OpenSettings()
     {
-        CanvasGroupSetState(_mainMenuButtonsCG, !open);
-        CanvasGroupSetState(_settingsMenuCG, open);
+        CanvasGroupSetState(_mainMenuButtonsCG, false);
+        UIManager.Instance.OpenSettings(() => {
+            CanvasGroupSetState(_mainMenuButtonsCG, true);
+        });
+    }
+
+    public void OpenQuitConfirmation()
+    {
+        CanvasGroupSetState(_mainMenuButtonsCG, false);
+        UIManager.Instance.OpenQuitConfirmation(() => {
+            CanvasGroupSetState(_mainMenuButtonsCG, true);
+        });
     }
 
     public void Quit()
     {
-        Application.Quit();
-
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-        #endif
+        UIManager.Instance.Quit();
     }
 }
