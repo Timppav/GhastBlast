@@ -21,9 +21,15 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] GameObject _spawnWarningPrefab;
     [SerializeField] float _warningDuration = 1f;
 
+    [Header("Enemy Pool Settings")]
+    [SerializeField] int _maxEnemiesAlive = 100;
+    List<Enemy> _activeEnemies = new();
+    Dictionary<Enemy, Queue<Enemy>> _enemyPools = new();
+
     void Start()
     {
         SetEnemySpawnPositions();
+        InitializeEnemyPools();
         InvokeRepeating(nameof(HandleGameDifficultyIncrease), 1f, 1f);
     }
 
@@ -32,11 +38,62 @@ public class EnemySpawner : MonoBehaviour
         HandleEnemySpawning();
     }
 
+    void InitializeEnemyPools()
+    {
+        foreach (Enemy enemyPrefab in _enemyPrefabs)
+        {
+            Queue<Enemy> pool = new Queue<Enemy>();
+
+            for (int i = 0; i < 15; i++)
+            {
+                Enemy enemy = Instantiate(enemyPrefab);
+                enemy.gameObject.SetActive(false);
+                enemy.transform.SetParent(transform);
+                pool.Enqueue(enemy);
+            }
+
+            _enemyPools[enemyPrefab] = pool;
+        }
+    }
+
+    Enemy GetPooledEnemy(Enemy prefab)
+    {
+        if (_enemyPools[prefab].Count > 0)
+        {
+            Enemy enemy = _enemyPools[prefab].Dequeue();
+            return enemy;
+        } else {
+            Enemy enemy = Instantiate(prefab);
+            enemy.transform.SetParent(transform);
+            return enemy;
+        }
+    }
+
+    public void ReturnEnemyToPool(Enemy enemy)
+    {
+        enemy.gameObject.SetActive(false);
+        _activeEnemies.Remove(enemy);
+
+        foreach (var kvp in _enemyPools)
+        {
+            if (enemy.name.Contains(kvp.Key.name))
+            {
+                kvp.Value.Enqueue(enemy);
+                break;
+            }
+        }
+    }
+
     void HandleEnemySpawning()
     {
         _currentCooldown -= Time.deltaTime;
-
         if (_currentCooldown > Time.time) return;
+
+        if (_activeEnemies.Count >= _maxEnemiesAlive)
+        {
+            Debug.Log("Max enemies reached: " + _maxEnemiesAlive);
+            return;
+        }
 
         _currentCooldown = Time.time + _spawnCooldown;
         StartCoroutine(SpawnEnemyToRandomLocation());

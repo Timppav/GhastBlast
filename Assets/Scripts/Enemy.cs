@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class Enemy : MonoBehaviour
     NavMeshAgent _agent;
     GameObject _target;
     Vector3 _lastPosition;
+    EnemySpawner _spawner;
     float _idleTimer;
     bool _isIdle = true;
     bool _isAggro = false;
@@ -38,6 +40,7 @@ public class Enemy : MonoBehaviour
         _lastPosition = transform.position;
 
         _entityHealth.OnDeath += DestroyEnemy;
+        _spawner = FindFirstObjectByType<EnemySpawner>();
     }
 
     void Update()
@@ -108,6 +111,29 @@ public class Enemy : MonoBehaviour
         _animator.SetBool("isDead", true);
         _agent.enabled = false;
         AudioManager.Instance.PlayAudio(_deathSound, AudioManager.SoundType.SFX, 1.0f, false);
-        Destroy(gameObject, 0.6f);
+        StartCoroutine(ReturnToPoolAfterDelay(0.6f));
+    }
+
+    IEnumerator ReturnToPoolAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        
+        // Reset enemy state
+        _animator.SetBool("isDead", false);
+        _animator.SetBool("isWalking", false);
+        _agent.enabled = true;
+        _isIdle = true;
+        _isAggro = false;
+        _idleTimer = _idleDuration;
+        
+        // Return to pool
+        if (_spawner != null)
+        {
+            _spawner.ReturnEnemyToPool(this);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
