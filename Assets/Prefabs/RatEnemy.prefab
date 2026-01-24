@@ -517,7 +517,7 @@ MonoBehaviour:
   _aggroDistance: 10
   _initialSpeed: 0.4
   _aggroSpeed: 4
-  _initialAnimationSpeed: 0.2
+  _expOrbPrefab: {fileID: 6492383259356117304, guid: 10fafee8ce630a04c88ac7dd6a0a6c5f, type: 3}
 --- !u!114 &3586533013391204520
 MonoBehaviour:
   m_ObjectHideFlags: 0

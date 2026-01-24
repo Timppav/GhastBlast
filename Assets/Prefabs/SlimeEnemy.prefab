@@ -528,7 +528,7 @@ MonoBehaviour:
   _aggroDistance: 10
   _initialSpeed: 0.3
   _aggroSpeed: 3
-  _initialAnimationSpeed: 0.15
+  _expOrbPrefab: {fileID: 6492383259356117304, guid: 10fafee8ce630a04c88ac7dd6a0a6c5f, type: 3}
 --- !u!114 &3586533013391204520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -545,7 +545,7 @@ MonoBehaviour:
   _currentHealth: 0
   _healthRegen: 1
   _invulnerabilityDuration: 0.2
-  _healthRegenDelay: 4
+  _healthRegenDelay: 3
 --- !u!195 &-8548724526366966841
 NavMeshAgent:
   m_ObjectHideFlags: 0

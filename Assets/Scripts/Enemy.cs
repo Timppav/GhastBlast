@@ -14,6 +14,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] float _initialSpeed = 0.5f;
     [SerializeField] float _aggroSpeed = 3f;
 
+    [Header("Drops")]
+    [SerializeField] GameObject _expOrbPrefab;
+
     EntityHealth _entityHealth;
     NavMeshAgent _agent;
     GameObject _target;
@@ -22,11 +25,11 @@ public class Enemy : MonoBehaviour
     float _idleTimer;
     bool _isIdle = true;
     bool _isAggro = false;
+    bool _isDead = false;
 
     void Awake()
     {
         _entityHealth = GetComponent<EntityHealth>();
-
         _agent = GetComponent<NavMeshAgent>();
         _agent.updateRotation = false;
         _agent.updateRotation = false;
@@ -108,10 +111,22 @@ public class Enemy : MonoBehaviour
 
     public void DestroyEnemy()
     {
+        if (_isDead) return;
+        _isDead = true;
+
         _animator.SetBool("isDead", true);
         _agent.enabled = false;
         AudioManager.Instance.PlayAudio(_deathSound, AudioManager.SoundType.SFX, 1.0f, false);
+        DropExpOrb();
         StartCoroutine(ReturnToPoolAfterDelay(0.6f));
+    }
+
+    void DropExpOrb()
+    {
+        if (_expOrbPrefab != null)
+        {
+            Instantiate(_expOrbPrefab, transform.position, Quaternion.identity);
+        }
     }
 
     IEnumerator ReturnToPoolAfterDelay(float delay)
@@ -125,6 +140,7 @@ public class Enemy : MonoBehaviour
         _isIdle = true;
         _isAggro = false;
         _idleTimer = _idleDuration;
+        _isDead = false;
         
         // Return to pool
         if (_spawner != null)

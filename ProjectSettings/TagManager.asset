@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Terrain
   - Projectile
+  - EXPOrb
   layers:
   - Default
   - TransparentFX
@@ -16,8 +17,8 @@ TagManager:
   - UI
   - Projectile
   - Enemies
-  - 
-  - 
+  - EXPOrb
+  - PlayerMagnet
   - 
   - 
   - 

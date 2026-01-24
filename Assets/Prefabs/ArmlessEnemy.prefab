@@ -570,7 +570,7 @@ MonoBehaviour:
   _aggroDistance: 13
   _initialSpeed: 0.2
   _aggroSpeed: 2
-  _initialAnimationSpeed: 0.1
+  _expOrbPrefab: {fileID: 6492383259356117304, guid: 10fafee8ce630a04c88ac7dd6a0a6c5f, type: 3}
 --- !u!114 &3586533013391204520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -585,9 +585,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EntityHealth
   _maxHealth: 4
   _currentHealth: 0
-  _healthRegen: 2
+  _healthRegen: 1
   _invulnerabilityDuration: 0.2
-  _healthRegenDelay: 2
+  _healthRegenDelay: 1.5
 --- !u!195 &-6185021846197173977
 NavMeshAgent:
   m_ObjectHideFlags: 0
