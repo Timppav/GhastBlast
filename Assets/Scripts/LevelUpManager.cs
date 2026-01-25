@@ -11,12 +11,12 @@ public class LevelUpManager : MonoBehaviour
     PlayerStatValues _playerStatValues;
 
     [Header("Stat Upgrade Values")]
-    [SerializeField] float _damageUpgrade = 0.5f;
-    [SerializeField] float _fireRateUpgrade = 0.3f;
-    [SerializeField] float _healthUpgrade = 10f;
+    [SerializeField] float _damageUpgrade = 1f;
+    [SerializeField] float _fireRateUpgrade = 1f;
+    [SerializeField] float _healthUpgrade = 1f;
     [SerializeField] float _healthRegenUpgrade = 1f;
-    [SerializeField] float _movementSpeedUpgrade = 0.3f;
-    [SerializeField] float _torchRangeUpgrade = 0.5f;
+    [SerializeField] float _movementSpeedUpgrade = 1f;
+    [SerializeField] float _torchRangeUpgrade = 1f;
 
     void Start()
     {
@@ -112,4 +112,11 @@ public class LevelUpManager : MonoBehaviour
     {
         _inGameUIManager?.HideLevelUpPanel();
     }
+
+    public float GetDamageUpgrade() => _damageUpgrade;
+    public float GetFireRateUpgrade() => _fireRateUpgrade;
+    public float GetHealthUpgrade() => _healthUpgrade;
+    public float GetHealthRegenUpgrade() => _healthRegenUpgrade;
+    public float GetMovementSpeedUpgrade() => _movementSpeedUpgrade;
+    public float GetTorchRangeUpgrade() => _torchRangeUpgrade;
 }
