@@ -60,4 +60,11 @@ public class PlayerController : MonoBehaviour
         bool flipSprite = mousePosition.x < transform.position.x;
         _characterBody.flipX = flipSprite;
     }
+
+    public void UpgradeMovementSpeed(float amount)
+    {
+        _movementSpeed += amount;
+    }
+
+    public float GetMovementSpeed() => _movementSpeed;
 }

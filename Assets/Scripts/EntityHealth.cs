@@ -198,6 +198,19 @@ public class EntityHealth : MonoBehaviour
         OnDeath?.Invoke();
     }
 
+    public void UpgradeMaxHealth(float amount)
+    {
+        _maxHealth += amount;
+        _currentHealth += amount;
+        OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
+    }
+
+    public void UpgradeHealthRegen(float amount)
+    {
+        _healthRegen += amount;
+    }
+
     public float GetCurrentHealth() => _currentHealth;
     public float GetMaxHealth() => _maxHealth;
+    public float GetHealthRegen() => _healthRegen;
 }

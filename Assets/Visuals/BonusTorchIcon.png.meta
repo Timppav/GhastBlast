@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: c71d81a8a7b454b46b8b0fe82a44f77a
+guid: d286543451a6930439350772ccc625d8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4872468213440289820
-    second: BonusFireRateIcon_0
+      213: -8588388205524109256
+    second: BonusTorchIcon_0
+  - first:
+      213: 3405870043549564572
+    second: BonusTorchIcon_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +116,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BonusFireRateIcon_0
+      name: BonusTorchIcon_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +131,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4e3628ea9f3816cb0800000000000000
-      internalID: -4872468213440289820
+      spriteID: 838b4982e6aefc880800000000000000
+      internalID: -8588388205524109256
       vertices: []
       indices: 
       edges: []
@@ -138,7 +141,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: d563e103ad247c0408a8fa4bb646c843
+    spriteID: be615b2b40058aa44ab7209703d97f8f
     internalID: 0
     vertices: []
     indices: 
@@ -150,7 +153,7 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":24.0,"y":24.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      BonusFireRateIcon_0: -4872468213440289820
+      BonusTorchIcon_0: -8588388205524109256
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

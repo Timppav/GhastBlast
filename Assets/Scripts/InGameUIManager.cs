@@ -4,6 +4,7 @@ public class InGameUIManager : MonoBehaviour
 {
     [SerializeField] CanvasGroup _gameOverPanelCG;
     [SerializeField] CanvasGroup _pauseMenuPanelCG;
+    [SerializeField] CanvasGroup _levelUpPanelCG;
 
     CanvasGroup _cg;
     bool _isPaused = false;
@@ -36,6 +37,23 @@ public class InGameUIManager : MonoBehaviour
         CanvasGroupSetState(_cg, true);
     }
 
+    public void ShowGameOverPanel()
+    {
+        CanvasGroupSetState(_gameOverPanelCG, true);
+    }
+
+    public void ShowLevelUpPanel()
+    {
+        CanvasGroupSetState(_levelUpPanelCG, true);
+        GameManager.Instance.PauseGame();
+    }
+
+    public void HideLevelUpPanel()
+    {
+        CanvasGroupSetState(_levelUpPanelCG, false);
+        GameManager.Instance.ResumeGame();
+    }
+
     public void PauseGame()
     {
         _isPaused = true;
@@ -58,11 +76,6 @@ public class InGameUIManager : MonoBehaviour
     void HidePauseMenuPanel()
     {
         CanvasGroupSetState(_pauseMenuPanelCG, false);
-    }
-
-    public void ShowGameOverPanel()
-    {
-        CanvasGroupSetState(_gameOverPanelCG, true);
     }
 
     public void ReturnToMainmenu()

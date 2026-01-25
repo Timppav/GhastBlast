@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     public Action<float, float> OnExpChanged;
     public Action<float> OnLevelUp;
 
-    private void OnEnable()
+    void OnEnable()
     {
         _playerHealth = GetComponent<EntityHealth>();
         _playerController = GetComponent<PlayerController>();
@@ -26,12 +26,12 @@ public class Player : MonoBehaviour
         _playerHealth.OnDeath += HandleDeath;
     }
 
-    private void Start()
+    void Start()
     {
         OnExpChanged?.Invoke(_playerExp, _nextLevelExp);
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
         _playerHealth.OnDeath -= HandleDeath;
     }

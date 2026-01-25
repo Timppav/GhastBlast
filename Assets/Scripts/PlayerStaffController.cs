@@ -8,10 +8,11 @@ public class PlayerStaffController : MonoBehaviour
     [SerializeField] Transform _tip;
     [SerializeField] float _projectileDamage = 10f;
     [SerializeField] float _shootFireRate;
-    [SerializeField] float _specialFireRate;
     [SerializeField] float _specialSpreadAngle = 15f;
     [SerializeField] Transform _flashlight;
     [SerializeField] float _flashlightDefaultZRotation = -90f;
+
+    float _specialFireRate;
     float _nextShootFireTime;
     float _nextSpecialFireTime;
     Vector2 _lookDirection;
@@ -23,6 +24,8 @@ public class PlayerStaffController : MonoBehaviour
         SetLookDirection();
         RotateStaff();
         HandleSpriteFlip();
+
+        _specialFireRate = _shootFireRate * 0.3f;
 
         // Shoots when fire button is pressed/held down
         if (Input.GetButton("Fire1") && Time.time >= _nextShootFireTime)
@@ -96,4 +99,18 @@ public class PlayerStaffController : MonoBehaviour
             _flashlight.localEulerAngles = flashlightRotation;
         }
     }
+
+    public void UpgradeDamage(float amount)
+    {
+        _projectileDamage += amount;
+    }
+
+    public void UpgradeFireRate(float amount)
+    {
+        _shootFireRate += amount;
+        _specialFireRate += amount;
+    }
+
+    public float GetProjectileDamage() => _projectileDamage;
+    public float GetFireRate() => _shootFireRate;
 }
