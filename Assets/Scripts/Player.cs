@@ -10,10 +10,13 @@ public class Player : MonoBehaviour
     [SerializeField] float _maxPlayerLevel = 99f;
     [SerializeField] float _levelExpIncrement = 100f;
     [SerializeField] AudioClip _levelUpSound;
+    [SerializeField] AudioClip _deathSound;
 
     EntityHealth _playerHealth;
     PlayerController _playerController;
     PlayerStaffController _playerStaffController;
+    CircleCollider2D _collider;
+    Rigidbody2D _rb;
 
     public Action<float, float> OnExpChanged;
     public Action<float> OnLevelUp;
@@ -23,6 +26,8 @@ public class Player : MonoBehaviour
         _playerHealth = GetComponent<EntityHealth>();
         _playerController = GetComponent<PlayerController>();
         _playerStaffController = GetComponentInChildren<PlayerStaffController>();
+        _collider = GetComponent<CircleCollider2D>();
+        _rb = GetComponent<Rigidbody2D>();
         _playerHealth.OnDeath += HandleDeath;
     }
 
@@ -72,10 +77,22 @@ public class Player : MonoBehaviour
     
     public void HandleDeath()
     {
+        _rb.linearDamping = 10f;
+        _rb.angularDamping = 10f;
+
         _playerController._animator.SetBool("isDead", true);
+        _collider.enabled = false;
         _playerController.enabled = false;
+
         if (_playerStaffController != null)
+        {
             _playerStaffController.enabled = false;
+        }
+
+        if (_deathSound != null && AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayAudio(_deathSound, AudioManager.SoundType.SFX, 3f, false);
+        }
 
         StartCoroutine(GameOverAfterDelay(2f));
     }

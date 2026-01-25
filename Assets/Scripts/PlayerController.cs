@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Time.time >= _nextFootstepAudio) // Check if it's time to play the next footstep sound
         {
-            AudioManager.Instance.PlayAudio(_footstep, AudioManager.SoundType.SFX, 0.3f, false);
+            AudioManager.Instance.PlayAudio(_footstep, AudioManager.SoundType.SFX, 0.7f, false);
 
             // Calculate the next timestamp when a fooststep should be played if still walking
             // The audio frequency is calculated in a way that plays the audio twice during the walking animation loop

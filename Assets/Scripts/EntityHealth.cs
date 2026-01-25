@@ -72,6 +72,10 @@ public class EntityHealth : MonoBehaviour
 
         if (_currentHealth <= 0)
         {
+            if (_isPlayer)
+            {
+                StartCoroutine(FadeTorch());
+            }
             Death();
         } else {
             StartInvulnerability();
@@ -117,7 +121,7 @@ public class EntityHealth : MonoBehaviour
     IEnumerator FlashTorchRed() {
         if (_torch == null) yield break;
         
-        float fadeDuration = 0.15f;
+        float fadeDuration = 0.05f;
         float elapsed = 0f;
 
         while (elapsed < fadeDuration)
@@ -139,6 +143,31 @@ public class EntityHealth : MonoBehaviour
         }
         
         _torch.color = _originalTorchColor;
+    }
+
+    IEnumerator FadeTorch() {
+        if (_torch == null) yield break;
+
+        float fadeDuration = 2f;
+        float elapsed = 0f;
+        float startIntensity = _torch.intensity;
+        float startOuterRadius = _torch.pointLightOuterRadius;
+
+        _torch.color = _redColor;
+
+        while (elapsed < fadeDuration)
+        {
+            float t = elapsed / fadeDuration;
+
+            _torch.intensity = Mathf.Lerp(startIntensity, 0f, t);
+            _torch.pointLightOuterRadius = Mathf.Lerp(startOuterRadius, 0f, t);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        _torch.intensity = 0f;
+        _torch.pointLightOuterRadius = 0f;
     }
 
     IEnumerator BlinkSprite()

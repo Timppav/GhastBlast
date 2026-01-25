@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
     [Header("Drops")]
     [SerializeField] GameObject _expOrbPrefab;
 
+    CircleCollider2D _collider;
     EntityHealth _entityHealth;
     NavMeshAgent _agent;
     GameObject _target;
@@ -30,6 +31,7 @@ public class Enemy : MonoBehaviour
 
     void Awake()
     {
+        _collider = GetComponent<CircleCollider2D>();
         _entityHealth = GetComponent<EntityHealth>();
         _agent = GetComponent<NavMeshAgent>();
         _agent.updateRotation = false;
@@ -123,6 +125,7 @@ public class Enemy : MonoBehaviour
 
         _isDead = true;
 
+        _collider.enabled = false;
         _damgeDealer.enabled = false;
         _animator.SetBool("isDead", true);
         _agent.enabled = false;
@@ -146,6 +149,7 @@ public class Enemy : MonoBehaviour
         // Reset enemy state
         _animator.SetBool("isDead", false);
         _animator.SetBool("isWalking", false);
+        _collider.enabled = true;
         _damgeDealer.enabled = true;
         _agent.enabled = true;
         _isIdle = true;

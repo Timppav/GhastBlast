@@ -5,6 +5,7 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] CanvasGroup _gameOverPanelCG;
     [SerializeField] CanvasGroup _pauseMenuPanelCG;
     [SerializeField] CanvasGroup _levelUpPanelCG;
+    [SerializeField] AudioClip _gameOverSound;
 
     CanvasGroup _cg;
     bool _isPaused = false;
@@ -40,6 +41,10 @@ public class InGameUIManager : MonoBehaviour
     public void ShowGameOverPanel()
     {
         CanvasGroupSetState(_gameOverPanelCG, true);
+        if (_gameOverSound != null && AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayAudio(_gameOverSound, AudioManager.SoundType.SFX, 0.6f, false);
+        }
     }
 
     public void ShowLevelUpPanel()
