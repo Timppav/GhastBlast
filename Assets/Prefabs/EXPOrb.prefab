@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f8f1432ab69e241b4edc80212d7ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EXPOrb
-  _experiencePoints: 35
+  _experiencePoints: 25
   _pickupSound: {fileID: 8300000, guid: 40076260fcc831943a9b3f8e1c0c2bc2, type: 3}
   _moveSpeed: 12
   _rotationSpeed: 360

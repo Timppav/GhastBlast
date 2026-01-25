@@ -3,18 +3,20 @@ using UnityEngine;
 public class PlayerStaffController : MonoBehaviour
 {
     [SerializeField] Projectile _projectile;
+    [SerializeField] StaffStrike _strike;
     [SerializeField] AudioClip _shootSound;
-    [SerializeField] AudioClip _specialSound;
+    [SerializeField] AudioClip _strikeSound;
     [SerializeField] Transform _tip;
-    [SerializeField] float _projectileDamage = 10f;
+    [SerializeField] Transform _strikeDistance;
+    [SerializeField] float _projectileDamage = 6f;
+    [SerializeField] float _strikeDamage = 18f;
     [SerializeField] float _shootFireRate;
-    [SerializeField] float _specialSpreadAngle = 15f;
     [SerializeField] Transform _flashlight;
     [SerializeField] float _flashlightDefaultZRotation = -90f;
 
-    float _specialFireRate;
+    float _strikeFireRate;
     float _nextShootFireTime;
-    float _nextSpecialFireTime;
+    float _nextStrikeFireTime;
     Vector2 _lookDirection;
 
     void Update()
@@ -25,7 +27,7 @@ public class PlayerStaffController : MonoBehaviour
         RotateStaff();
         HandleSpriteFlip();
 
-        _specialFireRate = _shootFireRate * 0.3f;
+        _strikeFireRate = _shootFireRate * 0.3f;
 
         // Shoots when fire button is pressed/held down
         if (Input.GetButton("Fire1") && Time.time >= _nextShootFireTime)
@@ -34,10 +36,10 @@ public class PlayerStaffController : MonoBehaviour
             Shoot();
         }
 
-        if (Input.GetButton("Fire2") && Time.time >= _nextSpecialFireTime)
+        if (Input.GetButton("Fire2") && Time.time >= _nextStrikeFireTime)
         {
-            _nextSpecialFireTime = Time.time + 1f / _specialFireRate; // Calculates the next time player can use special again
-            Special();
+            _nextStrikeFireTime = Time.time + 1f / _strikeFireRate; // Calculates the next time player can use special again
+            Strike();
         }
     }
 
@@ -54,20 +56,19 @@ public class PlayerStaffController : MonoBehaviour
         newProjectile.InitializeProjectile(_lookDirection, _projectileDamage);
     }
 
-    void Special()
+    void Strike()
     {
-        AudioManager.Instance.PlayAudio(_specialSound, AudioManager.SoundType.SFX, 0.4f, false);
+        AudioManager.Instance.PlayAudio(_strikeSound, AudioManager.SoundType.SFX, 0.4f, false);
+        StaffStrike strikeInstance = Instantiate(_strike, _strikeDistance.position, Quaternion.identity);
+
+
+        float angle = Mathf.Atan2(_lookDirection.y, _lookDirection.x) * Mathf.Rad2Deg;
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        bool flipStrike = mousePosition.x < transform.position.x;
         
-        // Shoot 3 projectiles in a fan pattern
-        for (int i = -1; i <= 1; i++)
-        {
-            float angleOffset = i * _specialSpreadAngle; // Calculate projectile angle offset
+        strikeInstance.InitializeStrike(_strikeDamage, angle, flipStrike);
 
-            Vector2 spreadDirection = Quaternion.Euler(0, 0, angleOffset) * _lookDirection;
-
-            Projectile newProjectile = Instantiate(_projectile, _tip.position, Quaternion.identity);
-            newProjectile.InitializeProjectile(spreadDirection, _projectileDamage);
-        }
+        strikeInstance.transform.SetParent(transform);
     }
 
     void SetLookDirection()
@@ -103,12 +104,13 @@ public class PlayerStaffController : MonoBehaviour
     public void UpgradeDamage(float amount)
     {
         _projectileDamage += amount;
+        _strikeDamage += amount * 2f;
     }
 
     public void UpgradeFireRate(float amount)
     {
         _shootFireRate += amount;
-        _specialFireRate += amount;
+        _strikeFireRate += amount;
     }
 
     public float GetProjectileDamage() => _projectileDamage;

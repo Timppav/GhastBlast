@@ -543,11 +543,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2fdd8e600e15134ab31b9bcfafccd8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityHealth
-  _maxHealth: 30
+  _maxHealth: 32
   _currentHealth: 0
   _healthRegen: 8
   _healthRegenDelay: 3
-  _invulnerabilityDuration: 0.2
+  _invulnerabilityDuration: 0
   _isPlayer: 0
   _torch: {fileID: 0}
   _spriteRenderer: {fileID: 5944387279188060462}

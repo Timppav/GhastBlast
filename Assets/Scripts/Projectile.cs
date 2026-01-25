@@ -4,9 +4,16 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] float _travelSpeed;
     [SerializeField] Rigidbody2D _rb;
+    [SerializeField] ParticleSystem _flightParticles;
     [SerializeField] ParticleSystem _hitParticles;
+    [SerializeField] float _rotationSpeed = 360f;
 
     float _damage;
+
+    void Update() 
+    {
+        transform.Rotate(Vector3.forward, _rotationSpeed * Time.deltaTime);
+    }
 
     public void InitializeProjectile(Vector2 direction, float damage)
     {
@@ -40,10 +47,12 @@ public class Projectile : MonoBehaviour
     {
         Vector2 movement = direction.normalized * _travelSpeed;
         _rb.linearVelocity = movement;
+        _flightParticles.Play();
     }
 
     void DestroyProjectile()
     {
+        _flightParticles.Stop();
         ParticleSystem hitParticles = Instantiate(_hitParticles, transform.position, Quaternion.identity);
         Destroy(hitParticles.gameObject, 1f);
         Destroy(gameObject);

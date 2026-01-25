@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField] float _playerExp;
     [SerializeField] float _nextLevelExp = 100f;
     [SerializeField] float _playerLevel = 1f;
-    [SerializeField] float _maxPlayerLevel = 99f;
+    [SerializeField] float _maxPlayerLevel = 9999f;
     [SerializeField] float _levelExpIncrement = 100f;
     [SerializeField] AudioClip _levelUpSound;
     [SerializeField] AudioClip _deathSound;

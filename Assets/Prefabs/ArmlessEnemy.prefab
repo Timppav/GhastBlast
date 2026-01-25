@@ -648,7 +648,7 @@ MonoBehaviour:
   _currentHealth: 0
   _healthRegen: 5
   _healthRegenDelay: 1.5
-  _invulnerabilityDuration: 0.2
+  _invulnerabilityDuration: 0
   _isPlayer: 0
   _torch: {fileID: 0}
   _spriteRenderer: {fileID: 5944387279188060462}
