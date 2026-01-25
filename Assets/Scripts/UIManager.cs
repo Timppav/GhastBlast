@@ -30,6 +30,11 @@ public class UIManager : MonoBehaviour
         canvasGroup.blocksRaycasts = state;
     }
 
+    public bool IsAnyPanelOpen()
+    {
+        return _settingsMenuCG.alpha > 0 || _mainMenuConfirmationCG.alpha > 0 || _quitConfirmationCG.alpha > 0;
+    }
+
     public void OpenSettings(System.Action onClose = null)
     {
         _onSettingsClosed = onClose;

@@ -70,6 +70,11 @@ public class EntityHealth : MonoBehaviour
             AudioManager.Instance.PlayAudio (_hitSound, AudioManager.SoundType.SFX, 1.0f, false);
         }
 
+        if (!_isPlayer)
+        {
+            StartCoroutine(FlashSpriteRed());
+        }
+
         if (_currentHealth <= 0)
         {
             if (_isPlayer)
@@ -78,7 +83,10 @@ public class EntityHealth : MonoBehaviour
             }
             Death();
         } else {
-            StartInvulnerability();
+            if (_invulnerabilityDuration > 0)
+            {
+                StartInvulnerability();
+            }
         }
     }
 
@@ -89,14 +97,8 @@ public class EntityHealth : MonoBehaviour
 
         if (_isPlayer)
         {
-            // Player: flash torch red and blink sprite
             StartCoroutine(FlashTorchRed());
             StartCoroutine(BlinkSprite());
-        }
-        else
-        {
-            // Enemy: flash sprite color red
-            StartCoroutine(FlashSpriteRed());
         }
 
         Invoke(nameof(EndInvulnerability), _invulnerabilityDuration);
@@ -196,7 +198,7 @@ public class EntityHealth : MonoBehaviour
         
         float elapsed = 0f;
         
-        while (elapsed < _invulnerabilityDuration)
+        while (elapsed < 0.2f)
         {
             _spriteRenderer.color = _redColor;
             yield return new WaitForSeconds(_flashSpeed);
@@ -219,7 +221,6 @@ public class EntityHealth : MonoBehaviour
             _currentHealth = Mathf.Clamp(_currentHealth + _healthRegen, 0, _maxHealth);
             OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
         }
-        
     }
 
     public void Death()

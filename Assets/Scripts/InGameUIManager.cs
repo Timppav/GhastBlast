@@ -9,7 +9,8 @@ public class InGameUIManager : MonoBehaviour
 
     CanvasGroup _cg;
     bool _isPaused = false;
-
+    bool _isLevelUpActive = false;
+    
     private void Awake()
     {
         _cg = GetComponent<CanvasGroup>();
@@ -19,10 +20,24 @@ public class InGameUIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            if (_isLevelUpActive)
+            {
+                return;
+            }
+
+            if (UIManager.Instance != null && UIManager.Instance.IsAnyPanelOpen())
+            {
+                return;
+            }
+
             if (_isPaused)
+            {
                 ResumeGame();
+            }
             else
+            {
                 PauseGame();
+            }    
         }
     }
 
@@ -49,14 +64,20 @@ public class InGameUIManager : MonoBehaviour
 
     public void ShowLevelUpPanel()
     {
+        _isLevelUpActive = true;
         CanvasGroupSetState(_levelUpPanelCG, true);
         GameManager.Instance.PauseGame();
     }
 
     public void HideLevelUpPanel()
     {
+        _isLevelUpActive = false;
         CanvasGroupSetState(_levelUpPanelCG, false);
-        GameManager.Instance.ResumeGame();
+
+        if (!_isPaused)
+        {
+            GameManager.Instance.ResumeGame();
+        }
     }
 
     public void PauseGame()
@@ -71,6 +92,7 @@ public class InGameUIManager : MonoBehaviour
         _isPaused = false;
         GameManager.Instance.ResumeGame();
         HidePauseMenuPanel();
+        
     }
 
     void ShowPauseMenuPanel()
