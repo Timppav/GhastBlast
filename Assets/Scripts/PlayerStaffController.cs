@@ -61,12 +61,11 @@ public class PlayerStaffController : MonoBehaviour
         AudioManager.Instance.PlayAudio(_strikeSound, AudioManager.SoundType.SFX, 0.4f, false);
         StaffStrike strikeInstance = Instantiate(_strike, _strikeDistance.position, Quaternion.identity);
 
-
         float angle = Mathf.Atan2(_lookDirection.y, _lookDirection.x) * Mathf.Rad2Deg;
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         bool flipStrike = mousePosition.x < transform.position.x;
         
-        strikeInstance.InitializeStrike(_strikeDamage, angle, flipStrike);
+        strikeInstance.InitializeStrike(_strikeDamage, angle, flipStrike, _lookDirection);
 
         strikeInstance.transform.SetParent(transform);
     }

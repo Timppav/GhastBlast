@@ -52,8 +52,7 @@ public class AudioManager : MonoBehaviour
 
         if (_currentMusicSource != null)
         {
-            Destroy(_currentMusicSource.gameObject);
-            _currentMusicSource = null;
+            StopCurrentMusic();
         }
 
         if (clip == null) return;
@@ -67,6 +66,15 @@ public class AudioManager : MonoBehaviour
         _currentMusicSource.loop = true;
         _currentMusicSource.outputAudioMixerGroup = _musicGroup;
         _currentMusicSource.Play();
+    }
+
+    public void StopCurrentMusic()
+    {
+        if (_currentMusicSource != null)
+        {
+            Destroy(_currentMusicSource.gameObject);
+            _currentMusicSource = null;
+        }
     }
 
     public void ChangeMasterVolume(float volume)

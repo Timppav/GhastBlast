@@ -91,6 +91,7 @@ public class Player : MonoBehaviour
 
         if (_deathSound != null && AudioManager.Instance != null)
         {
+            AudioManager.Instance.StopCurrentMusic();
             AudioManager.Instance.PlayAudio(_deathSound, AudioManager.SoundType.SFX, 3f, false);
         }
 

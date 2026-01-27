@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class InGameUIManager : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] CanvasGroup _pauseMenuPanelCG;
     [SerializeField] CanvasGroup _levelUpPanelCG;
     [SerializeField] AudioClip _gameOverSound;
+    [SerializeField] float _levelUpButtonDelay = 1f;
 
     CanvasGroup _cg;
     bool _isPaused = false;
@@ -65,8 +67,20 @@ public class InGameUIManager : MonoBehaviour
     public void ShowLevelUpPanel()
     {
         _isLevelUpActive = true;
-        CanvasGroupSetState(_levelUpPanelCG, true);
         GameManager.Instance.PauseGame();
+        StartCoroutine(ShowLevelUpPanelWithDelay());
+    }
+
+    IEnumerator ShowLevelUpPanelWithDelay() 
+    {
+        _levelUpPanelCG.alpha = 1.0f;
+        _levelUpPanelCG.interactable = false;
+        _levelUpPanelCG.blocksRaycasts = false;
+
+        yield return new WaitForSecondsRealtime(_levelUpButtonDelay);
+
+        _levelUpPanelCG.interactable = true;
+        _levelUpPanelCG.blocksRaycasts = true;
     }
 
     public void HideLevelUpPanel()

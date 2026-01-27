@@ -3,12 +3,16 @@ using System.Collections.Generic;
 
 public class StaffStrike : MonoBehaviour
 {
+    [SerializeField] float _knockbackForce = 5f;
+
     float _damage;
+    Vector2 _knockbackDirection;
     HashSet<GameObject> _hitEnemies = new HashSet<GameObject>();
 
-    public void InitializeStrike(float damage, float angle, bool flip)
+    public void InitializeStrike(float damage, float angle, bool flip, Vector2 knockbackDirection)
     {
         _damage = damage;
+        _knockbackDirection = knockbackDirection;
 
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
@@ -39,9 +43,23 @@ public class StaffStrike : MonoBehaviour
 
     void DealDamage(GameObject target)
     {
-        if (target.TryGetComponent(out EntityHealth entityHealth))
+        EntityHealth entityHealth = target.GetComponent<EntityHealth>();
+        if (entityHealth == null) return;
+
+        float currentHealth = entityHealth.GetCurrentHealth();
+
+        entityHealth.LoseHealth(_damage);
+
+        if (currentHealth > _damage)
         {
-            entityHealth.LoseHealth(_damage);
+            if (target.TryGetComponent(out Rigidbody2D rb))
+            {
+                // Stop current velocity for instant knockback
+                rb.linearVelocity = Vector2.zero;
+                
+                // Apply knockback in the direction of the player's cursor
+                rb.AddForce(_knockbackDirection * _knockbackForce, ForceMode2D.Impulse);
+            }
         }
     }
 }
