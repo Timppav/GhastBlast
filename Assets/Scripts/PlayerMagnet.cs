@@ -4,7 +4,7 @@ using UnityEngine.Rendering.Universal;
 public class PlayerMagnet : MonoBehaviour
 {
     [SerializeField] float _magnetRadius = 1.5f;
-    [SerializeField] LayerMask _expOrbLayer;
+    [SerializeField] LayerMask _pickupLayer;
     [SerializeField] Light2D _torchLight;
 
     CircleCollider2D _collider;
@@ -21,11 +21,11 @@ public class PlayerMagnet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (((1 << collision.gameObject.layer) & _expOrbLayer) != 0)
+        if (((1 << collision.gameObject.layer) & _pickupLayer) != 0)
         {
-            if (collision.TryGetComponent(out EXPOrb orb))
+            if (collision.TryGetComponent(out Pickup pickup))
             {
-                orb.StartPulling();
+                pickup.StartPulling();
             }
         }
     }

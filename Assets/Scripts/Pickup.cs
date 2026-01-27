@@ -1,12 +1,24 @@
 using UnityEngine;
 
-public class EXPOrb : MonoBehaviour
+public class Pickup : MonoBehaviour
 {
-    [SerializeField] float _experiencePoints = 10f;
+    public enum PickupType
+    {
+        ExperienceOrb,
+        TripleShotBonus
+    }
+
+    [SerializeField] PickupType _pickupType = PickupType.ExperienceOrb;
     [SerializeField] AudioClip _pickupSound;
 
+    [Header("Experience Orb Settings")]
+    [SerializeField] float _experiencePoints = 20f;
+
+    [Header("Triple Shot Bonus Settings")]
+    [SerializeField] float _bonusDuration = 10f;
+
     [Header("Magnet Settings")]
-    [SerializeField] float _moveSpeed = 8f;
+    [SerializeField] float _moveSpeed = 10f;
 
     [Header("Visual Effects")]
     [SerializeField] float _rotationSpeed = 360f;
@@ -69,7 +81,15 @@ public class EXPOrb : MonoBehaviour
 
         if (collision.gameObject.TryGetComponent(out Player player))
         {
-            player.AddExperience(_experiencePoints);
+            switch (_pickupType)
+            {
+                case PickupType.ExperienceOrb:
+                    player.AddExperience(_experiencePoints);
+                    break;
+                case PickupType.TripleShotBonus:
+                    player.GetComponentInChildren<PlayerStaffController>().ActivateTripleShotBonus(_bonusDuration);
+                    break;
+            }
 
             if (_pickupSound != null && AudioManager.Instance != null)
             {

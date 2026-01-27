@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerStaffController : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class PlayerStaffController : MonoBehaviour
     float _strikeFireRate;
     float _nextShootFireTime;
     float _nextStrikeFireTime;
+    bool _tripleShotBonusActive = false;
     Vector2 _lookDirection;
 
     void Update()
@@ -51,9 +53,25 @@ public class PlayerStaffController : MonoBehaviour
 
     void Shoot()
     {
+        if (_tripleShotBonusActive)
+        {
+            // Shoot 3 projectiles in a fan pattern
+            for (int i = -1; i <= 1; i++)
+            {
+                float angleOffset = i * 15f; // Calculate projectile angle offset
+                Vector2 spreadDirection = Quaternion.Euler(0, 0, angleOffset) * _lookDirection;
+
+                Projectile newProjectile = Instantiate(_projectile, _tip.position, Quaternion.identity);
+                newProjectile.InitializeProjectile(spreadDirection, _projectileDamage);
+            }
+        } 
+        else
+        {
+            Projectile newProjectile = Instantiate(_projectile, _tip.position, Quaternion.identity);
+            newProjectile.InitializeProjectile(_lookDirection, _projectileDamage);
+        }
+
         AudioManager.Instance.PlayAudio(_shootSound, AudioManager.SoundType.SFX, 0.4f, false);
-        Projectile newProjectile = Instantiate(_projectile, _tip.position, Quaternion.identity);
-        newProjectile.InitializeProjectile(_lookDirection, _projectileDamage);
     }
 
     void Strike()
@@ -68,6 +86,18 @@ public class PlayerStaffController : MonoBehaviour
         strikeInstance.InitializeStrike(_strikeDamage, angle, flipStrike, _lookDirection);
 
         strikeInstance.transform.SetParent(transform);
+    }
+
+    public void ActivateTripleShotBonus(float duration)
+    {
+        StartCoroutine(TripleShotBonusCoroutine(duration));
+    }
+
+    private IEnumerator TripleShotBonusCoroutine(float duration)
+    {
+        _tripleShotBonusActive = true;
+        yield return new WaitForSeconds(duration);
+        _tripleShotBonusActive = false;
     }
 
     void SetLookDirection()
