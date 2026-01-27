@@ -30,7 +30,7 @@ public class EnemySpawner : MonoBehaviour
     {
         SetEnemySpawnPositions();
         InitializeEnemyPools();
-        InvokeRepeating(nameof(HandleGameDifficultyIncrease), 1f, 1f);
+        InvokeRepeating(nameof(HandleGameDifficultyIncrease), 5f, 5f);
     }
 
     void Update()

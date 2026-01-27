@@ -10,12 +10,14 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] float _levelUpButtonDelay = 1f;
 
     CanvasGroup _cg;
+    LevelUpPanel _levelUpPanel;
     bool _isPaused = false;
     bool _isLevelUpActive = false;
     
     private void Awake()
     {
         _cg = GetComponent<CanvasGroup>();
+        _levelUpPanel = GetComponentInChildren<LevelUpPanel>();
     }
 
     void Update()
@@ -73,14 +75,12 @@ public class InGameUIManager : MonoBehaviour
 
     IEnumerator ShowLevelUpPanelWithDelay() 
     {
-        _levelUpPanelCG.alpha = 1.0f;
-        _levelUpPanelCG.interactable = false;
-        _levelUpPanelCG.blocksRaycasts = false;
+        CanvasGroupSetState(_levelUpPanelCG, true);
+        _levelUpPanel.DisableAllFrames();
 
         yield return new WaitForSecondsRealtime(_levelUpButtonDelay);
 
-        _levelUpPanelCG.interactable = true;
-        _levelUpPanelCG.blocksRaycasts = true;
+        _levelUpPanel.EnableAllFrames();
     }
 
     public void HideLevelUpPanel()
