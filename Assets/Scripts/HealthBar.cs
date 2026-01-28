@@ -4,15 +4,25 @@ using TMPro;
 
 public class HealthBar : MonoBehaviour
 {
-    [SerializeField] Image _hpBarFill;
+    [SerializeField] bool _isPlayer = false;
     [SerializeField] EntityHealth _entityHealth;
+    [SerializeField] Image _hpBarFill;
     [SerializeField] TextMeshProUGUI _healthText;
 
     float _currentHealth;
     float _maxHealth;
 
-    void Start()
+    void Awake()
     {
+        if (_isPlayer)
+        {
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+            {
+                _entityHealth = playerObj.GetComponent<EntityHealth>();
+            }
+        }
+
         if (_entityHealth != null)
         {
             _currentHealth = _entityHealth.GetCurrentHealth();

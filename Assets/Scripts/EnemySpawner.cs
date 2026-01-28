@@ -14,7 +14,6 @@ public class EnemySpawner : MonoBehaviour
     List<Vector3> _spawnPositions = new();
 
     [Header("Spawn Safety")]
-    [SerializeField] Transform _player;
     [SerializeField] float _minimumSpawnDistance = 5f;
 
     [Header("Spawn Warning")]
@@ -23,11 +22,17 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("Enemy Pool Settings")]
     [SerializeField] int _maxEnemiesAlive = 100;
+
+    Transform _player;
+
     List<Enemy> _activeEnemies = new();
     Dictionary<Enemy, Queue<Enemy>> _enemyPools = new();
 
-    void Start()
+    void Awake()
     {
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null) _player = playerObj.transform;
+
         SetEnemySpawnPositions();
         InitializeEnemyPools();
         InvokeRepeating(nameof(HandleGameDifficultyIncrease), 5f, 5f);

@@ -5,13 +5,22 @@ using UnityEngine.UI;
 public class ExperienceBar : MonoBehaviour
 {
     [SerializeField] Image _expBarFill;
-    [SerializeField] Player _player;
     [SerializeField] TextMeshProUGUI _expText;
     [SerializeField] TextMeshProUGUI _levelText;
 
+    Player _player;
     float _currentExp;
     float _nextLevelExp;
     float _currentLevel;
+
+    void Awake()
+    {
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            _player = playerObj.GetComponent<Player>();
+        }
+    }
 
     void Start()
     {
