@@ -90,6 +90,16 @@ public class EntityHealth : MonoBehaviour
         }
     }
 
+    public void HealPercentageOfMaxHealth(float healPercentage)
+    {
+        if (_currentHealth < _maxHealth)
+        {
+            float healAmount = _maxHealth * healPercentage;
+            _currentHealth = Mathf.Clamp(_currentHealth + healAmount, 0, _maxHealth);
+            OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
+        }
+    }
+
     void StartInvulnerability()
     {
         _isInvulnerable = true;

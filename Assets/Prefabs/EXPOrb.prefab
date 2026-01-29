@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1175159499877013248}
   - component: {fileID: 3956585252079758160}
   m_Layer: 8
-  m_Name: Torch
+  m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -263,6 +263,7 @@ MonoBehaviour:
   _pickupSound: {fileID: 8300000, guid: 40076260fcc831943a9b3f8e1c0c2bc2, type: 3}
   _experiencePoints: 20
   _bonusDuration: 10
+  _healPercentage: 0.3
   _moveSpeed: 12
   _rotationSpeed: 360
   _pickupParticlePrefab: {fileID: 1615649647050378998, guid: 5faf44042ab04f7468b7de07f39346de, type: 3}

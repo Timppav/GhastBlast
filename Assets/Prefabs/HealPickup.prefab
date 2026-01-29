@@ -94,9 +94,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6733148478556236376}
   - component: {fileID: 5368944306127021687}
-  - component: {fileID: 2515541075239295381}
+  - component: {fileID: 6180085069360889260}
   m_Layer: 8
-  m_Name: TripleShotVisuals
+  m_Name: HealVisuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -166,7 +166,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 2915728254873115426, guid: bee9046d874160f4982cf5712a07c92e, type: 3}
+  m_Sprite: {fileID: -6090719535321184972, guid: fb0d990e139bb9a4d9be796b54ebc13d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -176,7 +176,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!95 &2515541075239295381
+--- !u!95 &6180085069360889260
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
@@ -186,7 +186,7 @@ Animator:
   m_GameObject: {fileID: 5481531791185324659}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c2e6cdd82d9438549806e564f827baab, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1daf4319d0aa4fc47920cc6b47c359b3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 5733270515945156753}
   - component: {fileID: 6009748767469904515}
   m_Layer: 8
-  m_Name: TripleShotPickup
+  m_Name: HealPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -268,8 +268,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.45
+  m_Offset: {x: 0.03, y: 0}
+  m_Radius: 0.4
 --- !u!114 &5733270515945156753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,8 +282,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f8f1432ab69e241b4edc80212d7ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pickup
-  _pickupType: 1
-  _pickupSound: {fileID: 8300000, guid: 9a75d97445a279d418b8561f00977731, type: 3}
+  _pickupType: 2
+  _pickupSound: {fileID: 8300000, guid: 6d46dc64e947f5b41a641ba2109c0d25, type: 3}
   _experiencePoints: 20
   _bonusDuration: 10
   _healPercentage: 0.3

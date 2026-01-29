@@ -5,7 +5,8 @@ public class Pickup : MonoBehaviour
     public enum PickupType
     {
         ExperienceOrb,
-        TripleShotBonus
+        TripleShotBonus,
+        Heal
     }
 
     [SerializeField] PickupType _pickupType = PickupType.ExperienceOrb;
@@ -16,6 +17,9 @@ public class Pickup : MonoBehaviour
 
     [Header("Triple Shot Bonus Settings")]
     [SerializeField] float _bonusDuration = 10f;
+
+    [Header("Heal Settings")]
+    [SerializeField] float _healPercentage = 0.3f;
 
     [Header("Magnet Settings")]
     [SerializeField] float _moveSpeed = 10f;
@@ -60,7 +64,6 @@ public class Pickup : MonoBehaviour
         
         _isBeingPulled = true;
         
-        // Enable trail when orb starts moving
         if (_trailRenderer != null)
         {
             _trailRenderer.enabled = true;
@@ -72,6 +75,17 @@ public class Pickup : MonoBehaviour
         if (!collision.gameObject.CompareTag("Player"))
         {
             return;
+        }
+
+        if (_pickupType == PickupType.Heal)
+        {
+            if (collision.gameObject.TryGetComponent(out EntityHealth playerHealth))
+            {
+                if (playerHealth.GetCurrentHealth() >= playerHealth.GetMaxHealth())
+                {
+                    return;
+                }
+            }
         }
 
         if (_pickupParticlePrefab != null)
@@ -89,6 +103,9 @@ public class Pickup : MonoBehaviour
                 case PickupType.TripleShotBonus:
                     player.GetComponentInChildren<PlayerStaffController>().ActivateTripleShotBonus(_bonusDuration);
                     break;
+                case PickupType.Heal:
+                    player.GetComponentInParent<EntityHealth>().HealPercentageOfMaxHealth(_healPercentage);
+                    break;
             }
 
             if (_pickupSound != null && AudioManager.Instance != null)
@@ -98,5 +115,10 @@ public class Pickup : MonoBehaviour
 
             Destroy(gameObject);
         }
+    }
+
+    public PickupType GetPickupType()
+    {
+        return _pickupType;
     }
 }

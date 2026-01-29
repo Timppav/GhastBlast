@@ -8,6 +8,7 @@ public class PlayerMagnet : MonoBehaviour
     [SerializeField] Light2D _torchLight;
 
     CircleCollider2D _collider;
+    EntityHealth _playerHealth;
 
     void Awake()
     {
@@ -17,14 +18,28 @@ public class PlayerMagnet : MonoBehaviour
             _collider.radius = _magnetRadius;
             _torchLight.pointLightOuterRadius = _magnetRadius;
         }
+
+        _playerHealth = GetComponentInParent<EntityHealth>();
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        bool isFullHealth = true;
+
+        if (_playerHealth.GetCurrentHealth() < _playerHealth.GetMaxHealth())
+        {
+            isFullHealth = false;
+        }
+
         if (((1 << collision.gameObject.layer) & _pickupLayer) != 0)
         {
             if (collision.TryGetComponent(out Pickup pickup))
             {
+                if (pickup.GetPickupType() == Pickup.PickupType.Heal && isFullHealth)
+                {
+                    return;
+                }
+
                 pickup.StartPulling();
             }
         }

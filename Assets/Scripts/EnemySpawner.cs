@@ -8,7 +8,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] Enemy[] _enemyPrefabs;
     [SerializeField] float _spawnCooldown;
     [SerializeField] float _spawnCooldownReductionMultiplier;
+    [SerializeField] float _initialSpawnDelay = 15f;
     float _currentCooldown;
+    float _spawnTimer = 0f;
 
     [SerializeField] Tilemap _groundTiles;
     List<Vector3> _spawnPositions = new();
@@ -21,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float _warningDuration = 1f;
 
     [Header("Enemy Pool Settings")]
-    [SerializeField] int _maxEnemiesAlive = 100;
+    [SerializeField] int _maxEnemiesAlive = 1000;
 
     Transform _player;
 
@@ -40,6 +42,13 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
+        // Wait for initial delay before starting to spawn
+        if (_spawnTimer < _initialSpawnDelay)
+        {
+            _spawnTimer += Time.deltaTime;
+            return;
+        }
+
         HandleEnemySpawning();
     }
 
