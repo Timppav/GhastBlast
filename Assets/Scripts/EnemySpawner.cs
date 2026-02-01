@@ -24,6 +24,9 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("Enemy Pool Settings")]
     [SerializeField] int _maxEnemiesAlive = 1000;
+    
+    [Header("Spawn Validation")]
+    [SerializeField] LayerMask _obstacleLayer;
 
     Transform _player;
 
@@ -119,7 +122,13 @@ public class EnemySpawner : MonoBehaviour
         {
             if (_groundTiles.HasTile(position))
             {
-                _spawnPositions.Add(_groundTiles.GetCellCenterWorld(position));
+                Vector3 worldPos = _groundTiles.GetCellCenterWorld(position);
+
+                // Check if this position overlaps with obstacles
+                if (!Physics2D.OverlapCircle(worldPos, 0.3f, _obstacleLayer))
+                {
+                    _spawnPositions.Add(worldPos);
+                }
             }
         }
     }

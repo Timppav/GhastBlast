@@ -115,8 +115,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2548451645cb8144af3c02a849df00e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthBar
-  _hpBarFill: {fileID: 5454570859178040957}
+  _isPlayer: 0
   _entityHealth: {fileID: 3586533013391204520}
+  _hpBarFill: {fileID: 5454570859178040957}
   _healthText: {fileID: 0}
 --- !u!1 &2869184779381190804
 GameObject:
@@ -657,7 +658,7 @@ MonoBehaviour:
   _damgeDealer: {fileID: 4059322355505279984}
   _idleDuration: 2
   _aggroDistance: 13
-  _initialSpeed: 0.2
+  _initialSpeed: 0
   _aggroSpeed: 2
   _expOrbPrefab: {fileID: 6492383259356117304, guid: 10fafee8ce630a04c88ac7dd6a0a6c5f, type: 3}
 --- !u!114 &3586533013391204520
