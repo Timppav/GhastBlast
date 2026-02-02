@@ -4,11 +4,17 @@ using System;
 
 public class Player : MonoBehaviour
 {
+    [Header("Experience & Levels")]
     [SerializeField] float _playerExp;
     [SerializeField] float _nextLevelExp = 100f;
     [SerializeField] float _playerLevel = 1f;
     [SerializeField] float _maxPlayerLevel = 9999f;
     [SerializeField] float _levelExpIncrement = 100f;
+
+    [Header("Keys")]
+    [SerializeField] int _keyCount = 0;
+
+    [Header("Audio")]
     [SerializeField] AudioClip _levelUpSound;
     [SerializeField] AudioClip _deathSound;
 
@@ -20,6 +26,7 @@ public class Player : MonoBehaviour
 
     public Action<float, float> OnExpChanged;
     public Action<float> OnLevelUp;
+    public Action<int> OnKeysChanged;
 
     void OnEnable()
     {
@@ -71,10 +78,12 @@ public class Player : MonoBehaviour
         OnExpChanged?.Invoke(_playerExp, _nextLevelExp);
     }
 
-    public float GetPlayerLevel() => _playerLevel;
-    public float GetPlayerExp() => _playerExp;
-    public float GetNextLevelExp() => _nextLevelExp;
-    
+    public void AddKey()
+    {
+        _keyCount++;
+        OnKeysChanged?.Invoke(_keyCount);
+    }
+
     public void HandleDeath()
     {
         _rb.linearDamping = 10f;
@@ -103,4 +112,9 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(delay);
         GameManager.Instance.GameOver();
     }
+
+    public float GetPlayerLevel() => _playerLevel;
+    public float GetPlayerExp() => _playerExp;
+    public float GetNextLevelExp() => _nextLevelExp;
+    public int GetKeyCount() => _keyCount;
 }

@@ -6,8 +6,12 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] CanvasGroup _gameOverPanelCG;
     [SerializeField] CanvasGroup _pauseMenuPanelCG;
     [SerializeField] CanvasGroup _levelUpPanelCG;
-    [SerializeField] AudioClip _gameOverSound;
+    [SerializeField] CanvasGroup _victoryPanelCG;
     [SerializeField] float _levelUpButtonDelay = 1f;
+
+    [Header("Audio")]
+    [SerializeField] AudioClip _gameOverSound;
+    [SerializeField] AudioClip _victorySound;
 
     CanvasGroup _cg;
     LevelUpPanel _levelUpPanel;
@@ -63,6 +67,15 @@ public class InGameUIManager : MonoBehaviour
         if (_gameOverSound != null && AudioManager.Instance != null)
         {
             AudioManager.Instance.PlayAudio(_gameOverSound, AudioManager.SoundType.SFX, 0.6f, false);
+        }
+    }
+
+    public void ShowVictoryPanel()
+    {
+        CanvasGroupSetState(_victoryPanelCG, true);
+        if (_victorySound != null && AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayAudio(_victorySound, AudioManager.SoundType.SFX, 1f, false);
         }
     }
 

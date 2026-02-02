@@ -484,7 +484,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 12
   m_MaskInteraction: 0
   m_Sprite: {fileID: 663144637380208133, guid: 1a1ad45c4d071af4693a081873a05141, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -707,6 +707,7 @@ MonoBehaviour:
   _playerLevel: 1
   _maxPlayerLevel: 9999
   _levelExpIncrement: 25
+  _keyCount: 0
   _levelUpSound: {fileID: 8300000, guid: b13766ae85802b44481c297271a3a633, type: 3}
   _deathSound: {fileID: 8300000, guid: 84a9ac595c52ab544a5a1170054bee96, type: 3}
 --- !u!1 &8068694053297685586

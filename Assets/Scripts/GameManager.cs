@@ -124,6 +124,13 @@ public class GameManager : MonoBehaviour
         _inGameUIManager.ShowGameOverPanel();
     }
 
+    public void Victory()
+    {
+        Time.timeScale = 0f;
+        // _inGameUIManager.ShowVictoryPanel();
+        _inGameUIManager.ShowVictoryPanel();
+    }
+
     void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;

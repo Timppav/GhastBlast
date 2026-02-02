@@ -6,11 +6,11 @@ public class Pickup : MonoBehaviour
     {
         ExperienceOrb,
         TripleShotBonus,
-        Heal
+        Heal,
+        Key
     }
 
     [SerializeField] PickupType _pickupType = PickupType.ExperienceOrb;
-    [SerializeField] AudioClip _pickupSound;
 
     [Header("Experience Orb Settings")]
     [SerializeField] float _experiencePoints = 20f;
@@ -27,6 +27,10 @@ public class Pickup : MonoBehaviour
     [Header("Visual Effects")]
     [SerializeField] float _rotationSpeed = 360f;
     [SerializeField] GameObject _pickupParticlePrefab;
+
+    [Header("Audio")]
+    [SerializeField] AudioClip _pickupSound;
+    [SerializeField] float _volume = 1.0f;
 
     Transform _player;
     TrailRenderer _trailRenderer;
@@ -106,11 +110,14 @@ public class Pickup : MonoBehaviour
                 case PickupType.Heal:
                     player.GetComponentInParent<EntityHealth>().HealPercentageOfMaxHealth(_healPercentage);
                     break;
+                case PickupType.Key:
+                    player.AddKey();
+                    break;
             }
 
             if (_pickupSound != null && AudioManager.Instance != null)
             {
-                AudioManager.Instance.PlayAudio(_pickupSound, AudioManager.SoundType.SFX, 1.0f, false);
+                AudioManager.Instance.PlayAudio(_pickupSound, AudioManager.SoundType.SFX, _volume, false);
             }
 
             Destroy(gameObject);
