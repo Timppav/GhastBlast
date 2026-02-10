@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af8d4bb75edb65a4eb6a84e3b6c9208a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StaffStrike
-  _knockbackForce: 8
+  _knockbackForce: 10
 --- !u!1 &7617182337347475085
 GameObject:
   m_ObjectHideFlags: 0

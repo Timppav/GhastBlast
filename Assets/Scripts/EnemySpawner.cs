@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float _warningDuration = 1f;
 
     [Header("Enemy Pool Settings")]
-    [SerializeField] int _maxEnemiesAlive = 1000;
+    [SerializeField] int _maxEnemiesAlive = 9999;
     
     [Header("Spawn Validation")]
     [SerializeField] LayerMask _obstacleLayer;
@@ -64,6 +64,8 @@ public class EnemySpawner : MonoBehaviour
             for (int i = 0; i < 15; i++)
             {
                 Enemy enemy = Instantiate(enemyPrefab);
+                float aggroSpeed = enemy.GetAggroSpeed();
+                enemy.SetInitialSpeed(aggroSpeed * 0.3f);
                 enemy.gameObject.SetActive(false);
                 enemy.transform.SetParent(transform);
                 pool.Enqueue(enemy);
@@ -178,7 +180,11 @@ public class EnemySpawner : MonoBehaviour
             Destroy(warning);
         }
 
-        Instantiate(GetRandomEnemyPrefab(), spawnPosition, Quaternion.identity);
+        Enemy enemyPrefab = GetRandomEnemyPrefab();
+        Enemy enemy = GetPooledEnemy(enemyPrefab);
+        enemy.transform.position = spawnPosition;
+        enemy.gameObject.SetActive(true);
+        _activeEnemies.Add(enemy);
     }
 
     void HandleGameDifficultyIncrease()

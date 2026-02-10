@@ -116,9 +116,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthBar
   _isPlayer: 0
-  _entityHealth: {fileID: 3586533013391204520}
-  _hpBarFill: {fileID: 5454570859178040957}
-  _healthText: {fileID: 0}
 --- !u!1 &2869184779381190804
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,7 +202,7 @@ GameObject:
   - component: {fileID: 1587936597168623767}
   - component: {fileID: 5944387279188060462}
   - component: {fileID: 5527192529422084814}
-  - component: {fileID: 8290295832265923108}
+  - component: {fileID: 8898655386058507108}
   m_Layer: 0
   m_Name: ArmlessVisuals
   m_TagString: Untagged
@@ -309,7 +306,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8290295832265923108
+--- !u!114 &8898655386058507108
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -331,17 +328,17 @@ MonoBehaviour:
   m_AlphaCutoff: 0.1
   m_ApplyToSortingLayers: 00000000
   m_ShapePath:
-  - {x: -0.27574456, y: -0.5040046, z: 0}
-  - {x: -0.26822287, y: -0.20265862, z: 0}
-  - {x: -0.3923642, y: -0.05448982, z: 0}
-  - {x: -0.39988595, y: 0.35984036, z: 0}
-  - {x: -0.26021373, y: 0.49813968, z: 0}
-  - {x: 0.18429261, y: 0.49813968, z: 0}
-  - {x: 0.32845682, y: 0.3820074, z: 0}
-  - {x: 0.33581296, y: -0.00057017803, z: 0}
-  - {x: 0.21632913, y: -0.14659473, z: 0}
-  - {x: 0.19965786, y: -0.49199095, z: 0}
-  m_ShapePathHash: -1827486406
+  - {x: -0.22580907, y: -0.4950147, z: 0}
+  - {x: -0.24828169, y: -0.12040134, z: 0}
+  - {x: -0.36743775, y: -0.042026594, z: 0}
+  - {x: -0.36498892, y: 0.35734773, z: 0}
+  - {x: -0.2352873, y: 0.48318383, z: 0}
+  - {x: 0.17681468, y: 0.47321323, z: 0}
+  - {x: 0.30602303, y: 0.35957357, z: 0}
+  - {x: 0.29842326, y: 0.02684892, z: 0}
+  - {x: 0.17395414, y: -0.06932272, z: 0}
+  - {x: 0.18220934, y: -0.42468953, z: 0}
+  m_ShapePathHash: 1966914366
   m_InstanceId: 0
   m_ShadowShape2DComponent: {fileID: 0}
   m_ShadowShape2DProvider:
@@ -350,8 +347,8 @@ MonoBehaviour:
   m_ShadowMesh:
     m_Mesh: {fileID: 0}
     m_LocalBounds:
-      m_Center: {x: -0.032036483, y: -0.0029324293, z: 0}
-      m_Extent: {x: 0.36784947, y: 0.50107217, z: 0}
+      m_Center: {x: -0.03070736, y: -0.005915433, z: 0}
+      m_Extent: {x: 0.3367304, y: 0.48909926, z: 0}
     m_EdgeProcessing: 1
     m_TrimEdge: 0.05
     m_FlipX: 0
@@ -655,11 +652,11 @@ MonoBehaviour:
   _deathSound: {fileID: 8300000, guid: 1756598727b374d419c15bfb66dcd783, type: 3}
   _characterBody: {fileID: 5944387279188060462}
   _animator: {fileID: 5527192529422084814}
-  _damgeDealer: {fileID: 4059322355505279984}
+  _damageDealer: {fileID: 4059322355505279984}
   _idleDuration: 2
   _aggroDistance: 13
   _initialSpeed: 0
-  _aggroSpeed: 2
+  _aggroSpeed: 2.2
   _expOrbPrefab: {fileID: 6492383259356117304, guid: 10fafee8ce630a04c88ac7dd6a0a6c5f, type: 3}
 --- !u!114 &3586533013391204520
 MonoBehaviour:

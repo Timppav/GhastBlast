@@ -130,6 +130,15 @@ public class EntityHealth : MonoBehaviour
         }
     }
 
+    public void ResetHealth()
+    {
+        _currentHealth = _maxHealth;
+        _lastDamageTime = -_healthRegenDelay;
+        _isInvulnerable = false;
+
+        OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
+    }
+
     IEnumerator FlashTorchRed() {
         if (_torch == null) yield break;
         

@@ -115,9 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2548451645cb8144af3c02a849df00e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthBar
-  _hpBarFill: {fileID: 5220381226623189078}
-  _entityHealth: {fileID: 3586533013391204520}
-  _healthText: {fileID: 0}
+  _isPlayer: 0
 --- !u!1 &2273132234977970675
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,7 +216,7 @@ GameObject:
   - component: {fileID: 1587936597168623767}
   - component: {fileID: 5944387279188060462}
   - component: {fileID: 2081445704640558191}
-  - component: {fileID: 3592820672552880965}
+  - component: {fileID: 1163051120747296015}
   m_Layer: 0
   m_Name: BatVisuals
   m_TagString: Untagged
@@ -322,7 +320,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3592820672552880965
+--- !u!114 &1163051120747296015
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -335,9 +333,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.2D.Runtime::UnityEngine.Rendering.Universal.ShadowCaster2D
   m_ShadowGroup: 0
-  m_Priority: 10
+  m_Priority: 0
   m_ComponentVersion: 5
-  m_HasRenderer: 1
+  m_HasRenderer: 0
   m_UseRendererSilhouette: 1
   m_CastsShadows: 1
   m_SelfShadows: 0
@@ -578,7 +576,7 @@ MonoBehaviour:
   _deathSound: {fileID: 8300000, guid: 1756598727b374d419c15bfb66dcd783, type: 3}
   _characterBody: {fileID: 5944387279188060462}
   _animator: {fileID: 2081445704640558191}
-  _damgeDealer: {fileID: 4059322355505279984}
+  _damageDealer: {fileID: 4059322355505279984}
   _idleDuration: 2
   _aggroDistance: 6
   _initialSpeed: 0

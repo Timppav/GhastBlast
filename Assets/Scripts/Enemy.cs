@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] AudioClip _deathSound;
     [SerializeField] SpriteRenderer _characterBody;
     [SerializeField] Animator _animator;
-    [SerializeField] CircleCollider2D _damgeDealer;
+    [SerializeField] CircleCollider2D _damageDealer;
 
     [Header("Enemy Specific Config")]
     [SerializeField] float _idleDuration = 2f;
@@ -39,15 +40,29 @@ public class Enemy : MonoBehaviour
         _agent.updateUpAxis = false;
     }
 
+    void OnEnable()
+    {
+        if (_entityHealth != null)
+        {
+            _entityHealth.ResetHealth();
+            _entityHealth.OnDeath += DestroyEnemy;
+            _entityHealth.OnDamageTaken += HandleDamageTaken;
+        }
+    }
+
     void Start()
     {
         _idleTimer = _idleDuration;
         _target = GameObject.FindGameObjectWithTag("Player");
         _lastPosition = transform.position;
 
-        _entityHealth.OnDeath += DestroyEnemy;
-        _entityHealth.OnDamageTaken += HandleDamageTaken;
         _spawner = FindFirstObjectByType<EnemySpawner>();
+
+        // Check if this enemy was spawned by the spawner or manually placed
+        if (_spawner != null && transform.parent != _spawner.transform)
+        {
+            _spawner = null; // This is a manually placed enemy
+        }
     }
 
     void Update()
@@ -126,7 +141,7 @@ public class Enemy : MonoBehaviour
         _isDead = true;
 
         _collider.enabled = false;
-        _damgeDealer.enabled = false;
+        _damageDealer.enabled = false;
         _animator.SetBool("isDead", true);
         _agent.enabled = false;
         AudioManager.Instance.PlayAudio(_deathSound, AudioManager.SoundType.SFX, 1.0f, false);
@@ -150,21 +165,27 @@ public class Enemy : MonoBehaviour
         _animator.SetBool("isDead", false);
         _animator.SetBool("isWalking", false);
         _collider.enabled = true;
-        _damgeDealer.enabled = true;
+        _damageDealer.enabled = true;
         _agent.enabled = true;
         _isIdle = true;
         _isAggro = false;
         _idleTimer = _idleDuration;
         _isDead = false;
         
-        // Return to pool
         if (_spawner != null)
         {
             _spawner.ReturnEnemyToPool(this);
         }
         else
         {
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
+
+    public void SetInitialSpeed(float speed)
+    {
+        _initialSpeed = speed;
+    }
+
+    public float GetAggroSpeed() => _aggroSpeed;
 }

@@ -49,16 +49,22 @@ public class ExitHatchDoor : MonoBehaviour
             return;
         }
 
+        CheckDoorStatus(_player.GetKeyCount());
+
         if (_isUnlocked)
         {
             GameManager.Instance.Victory();
         }
-
-        if (_doorLockedSound != null && AudioManager.Instance != null)
+        else
         {
-            AudioManager.Instance.PlayAudio(_doorLockedSound, AudioManager.SoundType.SFX, 1.0f, false);
+            if (_doorLockedSound != null && AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayAudio(_doorLockedSound, AudioManager.SoundType.SFX, 1.0f, false);
+            }
+
+            Debug.Log($"Door locked! Need {_requiredKeys - _player.GetKeyCount()} more keys.");
         }
 
-        Debug.Log($"Door locked! Need {_requiredKeys - _player.GetKeyCount()} more keys.");
+        
     }
 }

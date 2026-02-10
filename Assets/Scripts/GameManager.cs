@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "TestLevel")
+        if (scene.name != "MainMenu")
         {
             _inGameUIManager = FindFirstObjectByType<InGameUIManager>();
             _inGameUIManager?.ShowInGameUI();
@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        StartCoroutine(LoadSceneAsync("TestLevel"));
+        StartCoroutine(LoadSceneAsync("Level1"));
     }
 
     IEnumerator LoadSceneAsync(string sceneName)
