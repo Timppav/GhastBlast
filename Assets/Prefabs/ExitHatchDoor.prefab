@@ -79,7 +79,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 12
+  m_SortingOrder: 11
   m_MaskInteraction: 0
   m_Sprite: {fileID: 1974829601760730735, guid: e03d1531003dc6f49b685a1512578f96, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -185,4 +185,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   _requiredKeys: 5
   _doorLockedSound: {fileID: 8300000, guid: c774cfb0a2ccc8341a3a84be5eb0ccfd, type: 3}
-  _doorOpenSound: {fileID: 8300000, guid: fbc9ea9c5e07ef84485bbd08e71d38d8, type: 3}

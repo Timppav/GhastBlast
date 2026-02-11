@@ -66,6 +66,7 @@ public class InGameUIManager : MonoBehaviour
         CanvasGroupSetState(_gameOverPanelCG, true);
         if (_gameOverSound != null && AudioManager.Instance != null)
         {
+            AudioManager.Instance.StopCurrentMusic();
             AudioManager.Instance.PlayAudio(_gameOverSound, AudioManager.SoundType.SFX, 0.6f, false);
         }
     }
@@ -75,6 +76,7 @@ public class InGameUIManager : MonoBehaviour
         CanvasGroupSetState(_victoryPanelCG, true);
         if (_victorySound != null && AudioManager.Instance != null)
         {
+            AudioManager.Instance.StopCurrentMusic();
             AudioManager.Instance.PlayAudio(_victorySound, AudioManager.SoundType.SFX, 1f, false);
         }
     }

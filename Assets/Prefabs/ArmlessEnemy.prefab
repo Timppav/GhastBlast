@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7953811603669239592}
   - component: {fileID: 7144573810184949495}
   - component: {fileID: 4023185022292222241}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1118111153
   m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!114 &7953811603669239592
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 8570356786249494439}
   - component: {fileID: 5628712361035088086}
   - component: {fileID: 31147781185880128}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 2100000, guid: b65c149f21d05b9478eff279521df710, type: 2}
+  m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0, g: 0.16981131, b: 0.015761793, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 1587936597168623767}
   - component: {fileID: 5944387279188060462}
   - component: {fileID: 5527192529422084814}
-  - component: {fileID: 8898655386058507108}
+  - component: {fileID: 3800547871891288675}
   m_Layer: 0
   m_Name: ArmlessVisuals
   m_TagString: Untagged
@@ -272,14 +272,14 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 12
   m_MaskInteraction: 0
   m_Sprite: {fileID: -5861500769292836163, guid: adb9621eb36712f4da05bce288489e02, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.15, y: 0.13}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -306,7 +306,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8898655386058507108
+--- !u!114 &3800547871891288675
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -319,26 +319,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.2D.Runtime::UnityEngine.Rendering.Universal.ShadowCaster2D
   m_ShadowGroup: 0
-  m_Priority: 10
+  m_Priority: 12
   m_ComponentVersion: 5
   m_HasRenderer: 1
   m_UseRendererSilhouette: 1
   m_CastsShadows: 1
   m_SelfShadows: 0
   m_AlphaCutoff: 0.1
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000b105a542
   m_ShapePath:
-  - {x: -0.22580907, y: -0.4950147, z: 0}
-  - {x: -0.24828169, y: -0.12040134, z: 0}
-  - {x: -0.36743775, y: -0.042026594, z: 0}
-  - {x: -0.36498892, y: 0.35734773, z: 0}
-  - {x: -0.2352873, y: 0.48318383, z: 0}
-  - {x: 0.17681468, y: 0.47321323, z: 0}
-  - {x: 0.30602303, y: 0.35957357, z: 0}
-  - {x: 0.29842326, y: 0.02684892, z: 0}
-  - {x: 0.17395414, y: -0.06932272, z: 0}
-  - {x: 0.18220934, y: -0.42468953, z: 0}
-  m_ShapePathHash: 1966914366
+  - {x: -0.25749958, y: -0.5052414, z: 0}
+  - {x: -0.26098958, y: -0.14204936, z: 0}
+  - {x: -0.378623, y: -0.06498712, z: 0}
+  - {x: -0.37584603, y: 0.37480778, z: 0}
+  - {x: -0.2546902, y: 0.50731295, z: 0}
+  - {x: 0.1861751, y: 0.49539942, z: 0}
+  - {x: 0.3172083, y: 0.37488058, z: 0}
+  - {x: 0.31618556, y: 0.0008948967, z: 0}
+  - {x: 0.18666203, y: -0.07297248, z: 0}
+  - {x: 0.1971882, y: -0.44029868, z: 0}
+  m_ShapePathHash: 1452011880
   m_InstanceId: 0
   m_ShadowShape2DComponent: {fileID: 0}
   m_ShadowShape2DProvider:
@@ -347,15 +347,15 @@ MonoBehaviour:
   m_ShadowMesh:
     m_Mesh: {fileID: 0}
     m_LocalBounds:
-      m_Center: {x: -0.03070736, y: -0.005915433, z: 0}
-      m_Extent: {x: 0.3367304, y: 0.48909926, z: 0}
+      m_Center: {x: -0.03070736, y: 0.0010358095, z: 0}
+      m_Extent: {x: 0.34791565, y: 0.5062772, z: 0}
     m_EdgeProcessing: 1
-    m_TrimEdge: 0.05
+    m_TrimEdge: 0.3
     m_FlipX: 0
     m_FlipY: 0
     m_InitialTrim: 0
   m_CastingOption: 1
-  m_PreviousTrimEdge: 0.05
+  m_PreviousTrimEdge: 0.3
   m_PreviousEdgeProcessing: 1
   m_PreviousShadowCastingSource: 1
   m_PreviousShadowShape2DSource: {fileID: 5944387279188060462}
@@ -456,7 +456,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7930857125017710090}
   - component: {fileID: 8394285413269483950}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -656,7 +656,7 @@ MonoBehaviour:
   _idleDuration: 2
   _aggroDistance: 13
   _initialSpeed: 0
-  _aggroSpeed: 2.2
+  _aggroSpeed: 0
   _expOrbPrefab: {fileID: 6492383259356117304, guid: 10fafee8ce630a04c88ac7dd6a0a6c5f, type: 3}
 --- !u!114 &3586533013391204520
 MonoBehaviour:
@@ -713,7 +713,7 @@ GameObject:
   - component: {fileID: 7096146797617065815}
   - component: {fileID: 7260591741535891150}
   - component: {fileID: 5454570859178040957}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -759,7 +759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 2100000, guid: b65c149f21d05b9478eff279521df710, type: 2}
+  m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.16769043, g: 0.745283, b: 0.116011046, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}

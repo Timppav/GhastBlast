@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
     CircleCollider2D _collider;
     EntityHealth _entityHealth;
     NavMeshAgent _agent;
+    Transform _canvas;
     GameObject _target;
     Vector3 _lastPosition;
     EnemySpawner _spawner;
@@ -53,6 +54,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         _idleTimer = _idleDuration;
+        _canvas = transform.Find("Canvas");
         _target = GameObject.FindGameObjectWithTag("Player");
         _lastPosition = transform.position;
 
@@ -95,6 +97,11 @@ public class Enemy : MonoBehaviour
     void HandleDamageTaken()
     {
         _isAggro = true;
+
+        if (_canvas != null)
+        {
+            _canvas.gameObject.SetActive(true);
+        }
     }
 
     void CheckAggro()

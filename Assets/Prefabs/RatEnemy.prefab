@@ -81,7 +81,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 12
   m_MaskInteraction: 0
   m_Sprite: {fileID: -3578019587575532720, guid: b7c0becb6f8c3fb43bef8c9036774392, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -128,27 +128,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.2D.Runtime::UnityEngine.Rendering.Universal.ShadowCaster2D
   m_ShadowGroup: 0
-  m_Priority: 0
+  m_Priority: 12
   m_ComponentVersion: 5
-  m_HasRenderer: 0
+  m_HasRenderer: 1
   m_UseRendererSilhouette: 1
   m_CastsShadows: 1
   m_SelfShadows: 0
   m_AlphaCutoff: 0.1
   m_ApplyToSortingLayers: 00000000
   m_ShapePath:
-  - {x: -0.27574456, y: -0.31599817, z: 0}
-  - {x: -0.31459695, y: -0.23173437, z: 0}
-  - {x: -0.34195852, y: -0.053245723, z: 0}
-  - {x: -0.27386102, y: 0.058507234, z: 0}
-  - {x: -0.044000864, y: 0.1400322, z: 0}
-  - {x: 0.2434063, y: 0.09104505, z: 0}
-  - {x: 0.33581296, y: -0.00057017803, z: 0}
-  - {x: 0.38195384, y: -0.12868938, z: 0}
-  - {x: 0.39266536, y: -0.34364295, z: 0}
-  - {x: 0.30709013, y: -0.40246412, z: 0}
-  - {x: -0.077350676, y: -0.39288276, z: 0}
-  m_ShapePathHash: -7751885
+  - {x: -0.31780323, y: -0.1312404, z: 0}
+  - {x: -0.19142511, y: 0.06417847, z: 0}
+  - {x: -0.122652575, y: 0.12850785, z: 0}
+  - {x: 0.06411049, y: 0.12309736, z: 0}
+  - {x: 0.12573594, y: 0.06342533, z: 0}
+  - {x: 0.25241888, y: 0.06100312, z: 0}
+  - {x: 0.3117794, y: 0.0009319186, z: 0}
+  - {x: 0.37143916, y: -0.12418309, z: 0}
+  - {x: 0.3776444, y: -0.3151031, z: 0}
+  - {x: 0.31610268, y: -0.3799327, z: 0}
+  - {x: -0.06232971, y: -0.3823681, z: 0}
+  - {x: -0.06713231, y: -0.3175466, z: 0}
+  - {x: -0.25189006, y: -0.31304032, z: 0}
+  - {x: -0.31948438, y: -0.24845022, z: 0}
+  m_ShapePathHash: 544377685
   m_InstanceId: 0
   m_ShadowShape2DComponent: {fileID: 0}
   m_ShadowShape2DProvider:
@@ -157,8 +160,8 @@ MonoBehaviour:
   m_ShadowMesh:
     m_Mesh: {fileID: 0}
     m_LocalBounds:
-      m_Center: {x: 0.025353432, y: -0.13121596, z: 0}
-      m_Extent: {x: 0.36731195, y: 0.27124816, z: 0}
+      m_Center: {x: 0.029080003, y: -0.12693012, z: 0}
+      m_Extent: {x: 0.3485644, y: 0.25543797, z: 0}
     m_EdgeProcessing: 1
     m_TrimEdge: 0.05
     m_FlipX: 0
@@ -316,7 +319,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1118111153
   m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!114 &354002210541319242
@@ -493,7 +496,7 @@ MonoBehaviour:
   _idleDuration: 2
   _aggroDistance: 10
   _initialSpeed: 0
-  _aggroSpeed: 4
+  _aggroSpeed: 0
   _expOrbPrefab: {fileID: 6492383259356117304, guid: 10fafee8ce630a04c88ac7dd6a0a6c5f, type: 3}
 --- !u!114 &3586533013391204520
 MonoBehaviour:
@@ -596,7 +599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 2100000, guid: b65c149f21d05b9478eff279521df710, type: 2}
+  m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0, g: 0.16981131, b: 0.015761793, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -671,7 +674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 2100000, guid: b65c149f21d05b9478eff279521df710, type: 2}
+  m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.16769043, g: 0.745283, b: 0.116011046, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}

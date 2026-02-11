@@ -218,6 +218,7 @@ GameObject:
   - component: {fileID: 2255518173044254714}
   - component: {fileID: 7757387615471545469}
   - component: {fileID: 7180787957375738211}
+  - component: {fileID: 3506926942139347919}
   m_Layer: 0
   m_Name: LightSourceVisuals
   m_TagString: Untagged
@@ -322,6 +323,68 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3506926942139347919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7453879676168625258}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.2D.Runtime::UnityEngine.Rendering.Universal.ShadowCaster2D
+  m_ShadowGroup: 0
+  m_Priority: 14
+  m_ComponentVersion: 5
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_AlphaCutoff: 0.1
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.44608712, y: -0.51737547, z: 0}
+  - {x: -0.43971348, y: -0.36674142, z: 0}
+  - {x: -0.26712084, y: -0.23166907, z: 0}
+  - {x: -0.26712084, y: -0.08909261, z: 0}
+  - {x: -0.44233537, y: 0.11591029, z: 0}
+  - {x: -0.43971348, y: 0.31987643, z: 0}
+  - {x: -0.12079239, y: 0.514981, z: 0}
+  - {x: 0.11933613, y: 0.49997282, z: 0}
+  - {x: 0.43825698, y: 0.31987643, z: 0}
+  - {x: 0.434505, y: 0.11726785, z: 0}
+  - {x: 0.26191258, y: -0.07408464, z: 0}
+  - {x: 0.26566458, y: -0.23166907, z: 0}
+  - {x: 0.44233513, y: -0.37560296, z: 0}
+  - {x: 0.44983888, y: -0.52487946, z: 0}
+  m_ShapePathHash: 116682433
+  m_InstanceId: 0
+  m_ShadowShape2DComponent: {fileID: 0}
+  m_ShadowShape2DProvider:
+    rid: -2
+  m_ShadowCastingSource: 1
+  m_ShadowMesh:
+    m_Mesh: {fileID: 0}
+    m_LocalBounds:
+      m_Center: {x: 0.0018758774, y: -0.004949212, z: 0}
+      m_Extent: {x: 0.447963, y: 0.51993024, z: 0}
+    m_EdgeProcessing: 1
+    m_TrimEdge: 0.07
+    m_FlipX: 0
+    m_FlipY: 0
+    m_InitialTrim: 0
+  m_CastingOption: 1
+  m_PreviousTrimEdge: 0.07
+  m_PreviousEdgeProcessing: 1
+  m_PreviousShadowCastingSource: 1
+  m_PreviousShadowShape2DSource: {fileID: 7757387615471545469}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1 &8074999716195197393
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,6 +34,8 @@ public class HealthBar : MonoBehaviour
                     _hpBarFill = fillTransform.GetComponent<Image>();
                 }
             }
+
+            gameObject.SetActive(false);
         }
         
         _healthText = GetComponentInChildren<TextMeshProUGUI>();
