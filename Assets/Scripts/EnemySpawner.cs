@@ -65,7 +65,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 Enemy enemy = Instantiate(enemyPrefab);
                 float aggroSpeed = enemy.GetAggroSpeed();
-                enemy.SetInitialSpeed(aggroSpeed * 0.3f);
+                enemy.SetInitialSpeed(aggroSpeed * Random.Range(0.1f, 0.5f));
                 enemy.gameObject.SetActive(false);
                 enemy.transform.SetParent(transform);
                 pool.Enqueue(enemy);

@@ -494,9 +494,9 @@ MonoBehaviour:
   _animator: {fileID: 6043856692338813832}
   _damageDealer: {fileID: 4059322355505279984}
   _idleDuration: 2
-  _aggroDistance: 10
+  _aggroDistance: 9
   _initialSpeed: 0
-  _aggroSpeed: 0
+  _aggroSpeed: 3.5
   _expOrbPrefab: {fileID: 6492383259356117304, guid: 10fafee8ce630a04c88ac7dd6a0a6c5f, type: 3}
 --- !u!114 &3586533013391204520
 MonoBehaviour:

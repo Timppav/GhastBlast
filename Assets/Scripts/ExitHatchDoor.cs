@@ -61,10 +61,6 @@ public class ExitHatchDoor : MonoBehaviour
             {
                 AudioManager.Instance.PlayAudio(_doorLockedSound, AudioManager.SoundType.SFX, 1.0f, false);
             }
-
-            Debug.Log($"Door locked! Need {_requiredKeys - _player.GetKeyCount()} more keys.");
         }
-
-        
     }
 }

@@ -178,6 +178,11 @@ public class Enemy : MonoBehaviour
         _isAggro = false;
         _idleTimer = _idleDuration;
         _isDead = false;
+
+        if (_canvas != null)
+        {
+            _canvas.gameObject.SetActive(false);
+        }
         
         if (_spawner != null)
         {
@@ -195,4 +200,10 @@ public class Enemy : MonoBehaviour
     }
 
     public float GetAggroSpeed() => _aggroSpeed;
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, _aggroDistance);
+    }
 }

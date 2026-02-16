@@ -27,9 +27,9 @@ public class LevelUpManager : MonoBehaviour
         if (_player != null)
         {
             _playerController = _player.GetComponent<PlayerController>();
-            _playerStaffController = _player.GetComponentInChildren<PlayerStaffController>();
+            _playerStaffController = _player.GetComponentInChildren<PlayerStaffController>(true);
             _playerHealth = _player.GetComponent<EntityHealth>();
-            _playerMagnet = _player.GetComponentInChildren<PlayerMagnet>();
+            _playerMagnet = _player.GetComponentInChildren<PlayerMagnet>(true);
 
             _player.OnLevelUp += HandleLevelUp;
         }
