@@ -19,6 +19,8 @@ public class PlayerStaffController : MonoBehaviour
     float _nextShootFireTime;
     float _nextStrikeFireTime;
     bool _tripleShotBonusActive = false;
+    Coroutine _tripleShotCoroutine;
+    float _tripleShotRemainingTime = 0f;
     Vector2 _lookDirection;
 
     void Update()
@@ -90,13 +92,38 @@ public class PlayerStaffController : MonoBehaviour
 
     public void ActivateTripleShotBonus(float duration)
     {
-        StartCoroutine(TripleShotBonusCoroutine(duration));
+        if (_tripleShotBonusActive)
+        {
+            _tripleShotRemainingTime += duration;
+
+            if (_tripleShotCoroutine != null)
+            {
+                StopCoroutine(_tripleShotCoroutine);
+            }
+
+            _tripleShotCoroutine = StartCoroutine(TripleShotBonusCoroutine(_tripleShotRemainingTime));
+        }
+        else
+        {
+            _tripleShotRemainingTime = duration;
+            _tripleShotCoroutine = StartCoroutine(TripleShotBonusCoroutine(duration));
+        }
+        
+        FindFirstObjectByType<InGameUIManager>().ShowTripleShotTimerPanel(duration);
     }
 
     private IEnumerator TripleShotBonusCoroutine(float duration)
     {
         _tripleShotBonusActive = true;
-        yield return new WaitForSeconds(duration);
+        _tripleShotRemainingTime = duration;
+
+        while (_tripleShotRemainingTime > 0)
+        {
+            _tripleShotRemainingTime -= Time.deltaTime;
+            yield return null;
+        }
+
+        _tripleShotRemainingTime = 0f;
         _tripleShotBonusActive = false;
     }
 

@@ -7,6 +7,7 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] CanvasGroup _pauseMenuPanelCG;
     [SerializeField] CanvasGroup _levelUpPanelCG;
     [SerializeField] CanvasGroup _victoryPanelCG;
+    [SerializeField] CanvasGroup _tripleShotTimerPanelCG;
     [SerializeField] float _levelUpButtonDelay = 1f;
 
     [Header("Audio")]
@@ -15,6 +16,7 @@ public class InGameUIManager : MonoBehaviour
 
     CanvasGroup _cg;
     LevelUpPanel _levelUpPanel;
+    TripleShotTimer _tripleShotTimer;
     bool _isPaused = false;
     bool _isLevelUpActive = false;
     
@@ -22,6 +24,8 @@ public class InGameUIManager : MonoBehaviour
     {
         _cg = GetComponent<CanvasGroup>();
         _levelUpPanel = GetComponentInChildren<LevelUpPanel>();
+        _tripleShotTimer = GetComponentInChildren<TripleShotTimer>();
+        _tripleShotTimer.OnTimerExpired += HideTripleShotTimerPanel;
     }
 
     void Update()
@@ -166,5 +170,23 @@ public class InGameUIManager : MonoBehaviour
     public void Quit()
     {
         UIManager.Instance.Quit();
+    }
+
+    public void ShowTripleShotTimerPanel(float duration)
+    {
+        if (_tripleShotTimer.IsActive())
+        {
+            _tripleShotTimer.AddTime(duration);
+        }
+        else
+        {
+            CanvasGroupSetState(_tripleShotTimerPanelCG, true);
+            _tripleShotTimer.StartTimer(duration);
+        }
+    }
+
+    void HideTripleShotTimerPanel()
+    {
+        CanvasGroupSetState(_tripleShotTimerPanelCG, false);
     }
 }
