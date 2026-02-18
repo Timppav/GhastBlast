@@ -17,7 +17,7 @@ public class HealthBar : MonoBehaviour
     {
         if (_isPlayer)
         {
-            Transform fillTransform = transform.Find("Fill");
+            Transform fillTransform = transform.Find("HealthBarFill");
             if (fillTransform != null)
             {
                 _hpBarFill = fillTransform.GetComponent<Image>();
@@ -85,7 +85,7 @@ public class HealthBar : MonoBehaviour
 
     IEnumerator UpdateHealthBarNextFrame()
     {
-        yield return null; // Wait one frame
+        yield return null;
         UpdateHealthBar();
     }
 

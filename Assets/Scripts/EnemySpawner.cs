@@ -24,6 +24,7 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("Enemy Pool Settings")]
     [SerializeField] int _maxEnemiesAlive = 9999;
+    [SerializeField] int _amountOfEachEnemyType = 15;
     
     [Header("Spawn Validation")]
     [SerializeField] LayerMask _obstacleLayer;
@@ -61,7 +62,7 @@ public class EnemySpawner : MonoBehaviour
         {
             Queue<Enemy> pool = new Queue<Enemy>();
 
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < _amountOfEachEnemyType; i++)
             {
                 Enemy enemy = Instantiate(enemyPrefab);
                 float aggroSpeed = enemy.GetAggroSpeed();

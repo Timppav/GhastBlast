@@ -41,7 +41,7 @@ public class PlayerStatValues : MonoBehaviour
     {
         if (_damageValue != null && _playerStaffController != null)
         {
-            _damageValue.text = _playerStaffController.GetProjectileDamage().ToString();
+            _damageValue.text = _playerStaffController.GetProjectileDamage().ToString("F2");
         }
     }
 
@@ -49,7 +49,7 @@ public class PlayerStatValues : MonoBehaviour
     {
         if (_fireRateValue != null && _playerStaffController != null)
         {
-            _fireRateValue.text = _playerStaffController.GetFireRate().ToString();
+            _fireRateValue.text = _playerStaffController.GetFireRate().ToString("F2");
         }
     }
 
@@ -57,7 +57,7 @@ public class PlayerStatValues : MonoBehaviour
     {
         if (_healthValue != null && _playerHealth != null)
         {
-            _healthValue.text = _playerHealth.GetMaxHealth().ToString();
+            _healthValue.text = _playerHealth.GetMaxHealth().ToString("F2");
         }
     }
 
@@ -65,7 +65,7 @@ public class PlayerStatValues : MonoBehaviour
     {
         if (_healthRegenValue != null && _playerHealth != null)
         {
-            _healthRegenValue.text = _playerHealth.GetHealthRegen().ToString();
+            _healthRegenValue.text = _playerHealth.GetHealthRegen().ToString("F2");
         }
     }
 
@@ -73,7 +73,7 @@ public class PlayerStatValues : MonoBehaviour
     {
         if (_speedValue != null && _playerController != null)
         {
-            _speedValue.text = _playerController.GetMovementSpeed().ToString();
+            _speedValue.text = _playerController.GetMovementSpeed().ToString("F2");
         }
     }
 
@@ -81,7 +81,7 @@ public class PlayerStatValues : MonoBehaviour
     {
         if (_torchValue != null && _playerMagnet != null)
         {
-            _torchValue.text = _playerMagnet.GetTorchRadius().ToString();
+            _torchValue.text = _playerMagnet.GetTorchRadius().ToString("F2");
         }
     }
 }

@@ -24,7 +24,6 @@ public class Enemy : MonoBehaviour
     NavMeshAgent _agent;
     Transform _canvas;
     GameObject _target;
-    Vector3 _lastPosition;
     EnemySpawner _spawner;
     float _idleTimer;
     bool _isIdle = true;
@@ -56,7 +55,6 @@ public class Enemy : MonoBehaviour
         _idleTimer = _idleDuration;
         _canvas = transform.Find("Canvas");
         _target = GameObject.FindGameObjectWithTag("Player");
-        _lastPosition = transform.position;
 
         _spawner = FindFirstObjectByType<EnemySpawner>();
 
@@ -106,7 +104,9 @@ public class Enemy : MonoBehaviour
 
     void CheckAggro()
     {
-        if (_target != null && Vector3.Distance(_lastPosition, _target.transform.position) <= _aggroDistance)
+        if (_isAggro) return;
+        
+        if (_target != null && Vector3.Distance(transform.position, _target.transform.position) <= _aggroDistance)
         {
             _isAggro = true;
         }
