@@ -31,7 +31,7 @@ public class KeyCount : MonoBehaviour
     {
         if (_keyAmountText != null)
         {
-            _keyAmountText.text = string.Format("{0}/5", keyCount.ToString());
+            _keyAmountText.text = string.Format("{0}/10", keyCount.ToString());
         }
     }
 }

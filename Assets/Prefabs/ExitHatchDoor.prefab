@@ -183,5 +183,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99c3c826ca686d14da7c46f983face24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _requiredKeys: 5
+  _requiredKeys: 10
   _doorLockedSound: {fileID: 8300000, guid: c774cfb0a2ccc8341a3a84be5eb0ccfd, type: 3}

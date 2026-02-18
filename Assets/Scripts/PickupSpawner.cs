@@ -25,7 +25,6 @@ public class PickupSpawner : MonoBehaviour
 
         if (spawnPositions.Count == 0)
         {
-            Debug.LogError("No pickup spawn positions found! Make sure PickupSpawn tiles are placed.");
             return;
         }
 

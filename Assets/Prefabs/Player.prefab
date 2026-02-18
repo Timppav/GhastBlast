@@ -683,7 +683,7 @@ MonoBehaviour:
   _maxHealth: 100
   _currentHealth: 0
   _healthRegen: 1
-  _healthRegenDelay: 3
+  _healthRegenDelay: 2
   _invulnerabilityDuration: 1
   _isPlayer: 1
   _torch: {fileID: 7034735972324963903}
