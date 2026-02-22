@@ -2,13 +2,27 @@ using UnityEngine;
 
 public class CursorManager : MonoBehaviour
 {
-    [SerializeField] private Texture2D cursorTexture;
-
-    private Vector2 cursorHotspot;
+    [SerializeField] private Texture2D crosshairCursor;
+    [SerializeField] private Texture2D menuCursor;
 
     void Start()
     {
-        cursorHotspot = new Vector2(cursorTexture.width / 2, cursorTexture.height / 2);
-        Cursor.SetCursor(cursorTexture, cursorHotspot,  CursorMode.Auto);
+        SetCrosshairCursor();
+    }
+
+    public void SetCrosshairCursor()
+    {
+        SetCursor(crosshairCursor);
+    }
+
+    public void SetMenuCursor()
+    {
+        SetCursor(menuCursor);
+    }
+
+    void SetCursor(Texture2D texture)
+    {
+        Vector2 hotspot = new Vector2(texture.width / 2, texture.height / 2);
+        Cursor.SetCursor(texture, hotspot, CursorMode.Auto);
     }
 }

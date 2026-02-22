@@ -7,10 +7,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] CanvasGroup _settingsMenuCG;
     [SerializeField] CanvasGroup _quitConfirmationCG;
     [SerializeField] CanvasGroup _mainMenuConfirmationCG;
+    [SerializeField] CanvasGroup _helpMenuCG;
 
     System.Action _onSettingsClosed;
     System.Action _onQuitConfirmationClosed;
     System.Action _onMainMenuConfirmationClosed;
+    System.Action _onHelpMenuClosed;
 
     void Awake()
     {
@@ -32,7 +34,7 @@ public class UIManager : MonoBehaviour
 
     public bool IsAnyPanelOpen()
     {
-        return _settingsMenuCG.alpha > 0 || _mainMenuConfirmationCG.alpha > 0 || _quitConfirmationCG.alpha > 0;
+        return _settingsMenuCG.alpha > 0 || _mainMenuConfirmationCG.alpha > 0 || _quitConfirmationCG.alpha > 0 || _helpMenuCG.alpha > 0;
     }
 
     public void OpenSettings(System.Action onClose = null)
@@ -46,6 +48,19 @@ public class UIManager : MonoBehaviour
         CanvasGroupSetState(_settingsMenuCG, false);
         _onSettingsClosed?.Invoke();
         _onSettingsClosed = null;
+    }
+
+    public void OpenHelpMenu(System.Action onClose = null)
+    {
+        _onHelpMenuClosed = onClose;
+        CanvasGroupSetState(_helpMenuCG, true);
+    }
+
+    public void CloseHelpMenu()
+    {
+        CanvasGroupSetState(_helpMenuCG, false);
+        _onHelpMenuClosed?.Invoke();
+        _onHelpMenuClosed = null;
     }
 
     public void OpenMainMenuConfirmation(System.Action onClose = null)

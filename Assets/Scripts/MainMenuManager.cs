@@ -42,6 +42,15 @@ public class MainMenuManager : MonoBehaviour
         });
     }
 
+    public void OpenHelpMenu()
+    {
+        CanvasGroupSetState(_mainMenuButtonsCG, false);
+        UIManager.Instance.OpenHelpMenu(() =>
+        {
+            CanvasGroupSetState(_mainMenuButtonsCG, true);
+        });
+    }
+
     public void OpenQuitConfirmation()
     {
         CanvasGroupSetState(_mainMenuButtonsCG, false);

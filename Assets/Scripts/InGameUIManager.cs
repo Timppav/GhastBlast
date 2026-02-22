@@ -8,6 +8,7 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] CanvasGroup _levelUpPanelCG;
     [SerializeField] CanvasGroup _victoryPanelCG;
     [SerializeField] CanvasGroup _tripleShotTimerPanelCG;
+    [SerializeField] CanvasGroup _pauseOverlayCG;
     [SerializeField] float _levelUpButtonDelay = 1f;
 
     [Header("Audio")]
@@ -17,6 +18,7 @@ public class InGameUIManager : MonoBehaviour
     CanvasGroup _cg;
     LevelUpPanel _levelUpPanel;
     TripleShotTimer _tripleShotTimer;
+    CursorManager _cursorManager;
     bool _isPaused = false;
     bool _isLevelUpActive = false;
     
@@ -26,6 +28,7 @@ public class InGameUIManager : MonoBehaviour
         _levelUpPanel = GetComponentInChildren<LevelUpPanel>();
         _tripleShotTimer = GetComponentInChildren<TripleShotTimer>();
         _tripleShotTimer.OnTimerExpired += HideTripleShotTimerPanel;
+        _cursorManager = FindFirstObjectByType<CursorManager>();
     }
 
     void Update()
@@ -89,6 +92,7 @@ public class InGameUIManager : MonoBehaviour
     {
         _isLevelUpActive = true;
         GameManager.Instance.PauseGame();
+        _cursorManager.SetMenuCursor();
         StartCoroutine(ShowLevelUpPanelWithDelay());
     }
 
@@ -110,6 +114,7 @@ public class InGameUIManager : MonoBehaviour
         if (!_isPaused)
         {
             GameManager.Instance.ResumeGame();
+            _cursorManager.SetCrosshairCursor();
         }
     }
 
@@ -117,6 +122,7 @@ public class InGameUIManager : MonoBehaviour
     {
         _isPaused = true;
         GameManager.Instance.PauseGame();
+        _cursorManager.SetMenuCursor();
         ShowPauseMenuPanel();
     }
 
@@ -124,17 +130,20 @@ public class InGameUIManager : MonoBehaviour
     {
         _isPaused = false;
         GameManager.Instance.ResumeGame();
+        _cursorManager.SetCrosshairCursor();
         HidePauseMenuPanel();
         
     }
 
     void ShowPauseMenuPanel()
     {
+        CanvasGroupSetState(_pauseOverlayCG, true);
         CanvasGroupSetState(_pauseMenuPanelCG, true);
     }
 
     void HidePauseMenuPanel()
     {
+        CanvasGroupSetState(_pauseOverlayCG, false); 
         CanvasGroupSetState(_pauseMenuPanelCG, false);
     }
 
@@ -147,6 +156,15 @@ public class InGameUIManager : MonoBehaviour
     {
         CanvasGroupSetState(_pauseMenuPanelCG, false);
         UIManager.Instance.OpenSettings(() => {
+            CanvasGroupSetState(_pauseMenuPanelCG, true);
+        });
+    }
+
+    public void OpenHelpMenu()
+    {
+        CanvasGroupSetState(_pauseMenuPanelCG, false);
+        UIManager.Instance.OpenHelpMenu(() =>
+        {
             CanvasGroupSetState(_pauseMenuPanelCG, true);
         });
     }
