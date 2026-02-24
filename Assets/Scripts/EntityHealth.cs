@@ -259,6 +259,11 @@ public class EntityHealth : MonoBehaviour
         _healthRegen += amount;
     }
 
+    public void SetMaxHealth(float maxHealth)
+    {
+        _maxHealth = maxHealth;
+    }
+
     public float GetCurrentHealth() => _currentHealth;
     public float GetMaxHealth() => _maxHealth;
     public float GetHealthRegen() => _healthRegen;

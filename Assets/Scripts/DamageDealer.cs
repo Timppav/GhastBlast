@@ -16,4 +16,11 @@ public class DamageDealer : MonoBehaviour
             entityHealth.LoseHealth(_damage);
         }
     }
+
+    public void SetDamage(float damage)
+    {
+        _damage = damage;
+    }
+
+    public float GetDamage() => _damage;
 }

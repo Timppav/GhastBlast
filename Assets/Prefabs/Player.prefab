@@ -399,9 +399,9 @@ MonoBehaviour:
   _strikeSound: {fileID: 8300000, guid: 54363ad664f6fb54b8225842e27828fe, type: 3}
   _tip: {fileID: 8074461475302349226}
   _strikeDistance: {fileID: 5660838611608473531}
-  _projectileDamage: 5
-  _strikeDamage: 15
-  _shootFireRate: 3
+  _projectileDamage: 4
+  _strikeDamage: 13
+  _shootFireRate: 2.6
   _flashlight: {fileID: 5900796537581904112}
   _flashlightDefaultZRotation: -90
 --- !u!1 &6335419509604115443
@@ -559,8 +559,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4095196965011306629}
   - component: {fileID: 8123115812173651609}
-  - component: {fileID: 1531843243426882797}
   - component: {fileID: 8092828229733602339}
+  - component: {fileID: 1531843243426882797}
   - component: {fileID: 3556200419937672826}
   - component: {fileID: 3475139781944037456}
   m_Layer: 3
@@ -616,22 +616,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1531843243426882797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7947674899828565225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83e694bb877556d41b2abc71e178099b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  _movementSpeed: 5
-  _characterBody: {fileID: 3555496234594489054}
-  _animator: {fileID: 4997385200285539694}
-  _footstep: {fileID: 8300000, guid: 083a9c924991fa847aac4b8833b441c0, type: 3}
 --- !u!58 &8092828229733602339
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -668,6 +652,22 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.42
+--- !u!114 &1531843243426882797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7947674899828565225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83e694bb877556d41b2abc71e178099b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  _movementSpeed: 5
+  _characterBody: {fileID: 3555496234594489054}
+  _animator: {fileID: 4997385200285539694}
+  _footstep: {fileID: 8300000, guid: 083a9c924991fa847aac4b8833b441c0, type: 3}
 --- !u!114 &3556200419937672826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -706,7 +706,7 @@ MonoBehaviour:
   _nextLevelExp: 100
   _playerLevel: 1
   _maxPlayerLevel: 9999
-  _levelExpIncrement: 25
+  _levelExpIncrement: 10
   _keyCount: 0
   _levelUpSound: {fileID: 8300000, guid: b13766ae85802b44481c297271a3a633, type: 3}
   _deathSound: {fileID: 8300000, guid: 84a9ac595c52ab544a5a1170054bee96, type: 3}

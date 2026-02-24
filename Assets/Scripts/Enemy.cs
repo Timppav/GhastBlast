@@ -199,6 +199,11 @@ public class Enemy : MonoBehaviour
         _initialSpeed = speed;
     }
 
+    public void SetAggroSpeed(float speed)
+    {
+        _aggroSpeed = speed;
+    }
+
     public float GetAggroSpeed() => _aggroSpeed;
 
     void OnDrawGizmosSelected()

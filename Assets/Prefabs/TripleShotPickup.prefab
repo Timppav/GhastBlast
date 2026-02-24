@@ -283,13 +283,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pickup
   _pickupType: 1
-  _pickupSound: {fileID: 8300000, guid: 9a75d97445a279d418b8561f00977731, type: 3}
   _experiencePoints: 20
   _bonusDuration: 10
   _healPercentage: 0.3
   _moveSpeed: 10
   _rotationSpeed: 360
   _pickupParticlePrefab: {fileID: 1615649647050378998, guid: 56580380c95ade640b0e03d187787142, type: 3}
+  _pickupSound: {fileID: 8300000, guid: 9a75d97445a279d418b8561f00977731, type: 3}
+  _volume: 1
 --- !u!96 &6009748767469904515
 TrailRenderer:
   serializedVersion: 4
@@ -349,7 +350,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.15
+        value: 0.25
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -357,7 +358,7 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.35
+        time: 0.4
         value: 0
         inSlope: 0
         outSlope: 0

@@ -7,7 +7,6 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] Enemy[] _enemyPrefabs;
     [SerializeField] float _spawnCooldown;
-    [SerializeField] float _spawnCooldownReductionMultiplier;
     [SerializeField] float _initialSpawnDelay = 15f;
     float _currentCooldown;
     float _spawnTimer = 0f;
@@ -29,6 +28,20 @@ public class EnemySpawner : MonoBehaviour
     [Header("Spawn Validation")]
     [SerializeField] LayerMask _obstacleLayer;
 
+    [Header("Difficulty Scaling")]
+    [SerializeField] float _damageBonusPerMinute = 1f;
+    [SerializeField] float _healthBonusPerMinute = 1f;
+    [SerializeField] float _speedBonusPerMinute = 0.1f;
+    [SerializeField] float _cooldownReductionPerMinute = 1f;
+    [SerializeField] float _maxDamage = 100f;
+    [SerializeField] float _maxHealth = 150f;
+    [SerializeField] float _maxSpeed = 10f;
+    [SerializeField] float _minCooldown = 1f;
+
+    Dictionary<Enemy, float> _currentDamagePerType     = new();
+    Dictionary<Enemy, float> _currentHealthPerType     = new();
+    Dictionary<Enemy, float> _currentAggroSpeedPerType = new();
+
     Transform _player;
 
     List<Enemy> _activeEnemies = new();
@@ -41,7 +54,8 @@ public class EnemySpawner : MonoBehaviour
 
         SetEnemySpawnPositions();
         InitializeEnemyPools();
-        InvokeRepeating(nameof(HandleGameDifficultyIncrease), 5f, 5f);
+
+        InvokeRepeating(nameof(HandleGameDifficultyIncrease), 60f, 60f);
     }
 
     void Update()
@@ -65,27 +79,54 @@ public class EnemySpawner : MonoBehaviour
             for (int i = 0; i < _amountOfEachEnemyType; i++)
             {
                 Enemy enemy = Instantiate(enemyPrefab);
-                float aggroSpeed = enemy.GetAggroSpeed();
-                enemy.SetInitialSpeed(aggroSpeed * Random.Range(0f, 0.4f));
+                // float aggroSpeed = enemy.GetAggroSpeed();
+                // enemy.SetInitialSpeed(aggroSpeed * Random.Range(0f, 0.4f));
                 enemy.gameObject.SetActive(false);
                 enemy.transform.SetParent(transform);
                 pool.Enqueue(enemy);
             }
 
             _enemyPools[enemyPrefab] = pool;
+
+            float baseDamage = 1f;
+            DamageDealer dd = enemyPrefab.GetComponentInChildren<DamageDealer>();
+            if (dd != null) baseDamage = dd.GetDamage();
+
+            float baseHealth = 100f;
+            EntityHealth eh = enemyPrefab.GetComponent<EntityHealth>();
+            if (eh != null) baseHealth = eh.GetMaxHealth();
+
+            _currentDamagePerType[enemyPrefab] = baseDamage;
+            _currentHealthPerType[enemyPrefab] = baseHealth;
+            _currentAggroSpeedPerType[enemyPrefab] = enemyPrefab.GetAggroSpeed();
         }
     }
 
     Enemy GetPooledEnemy(Enemy prefab)
     {
-        if (_enemyPools[prefab].Count > 0)
+        Enemy enemy = _enemyPools[prefab].Count > 0
+            ? _enemyPools[prefab].Dequeue()
+            : Instantiate(prefab, transform);
+
+        ApplyDifficultyStats(enemy, prefab);
+        return enemy;
+    }
+
+    void ApplyDifficultyStats(Enemy enemy, Enemy prefab)
+    {
+        float aggroSpeed = _currentAggroSpeedPerType[prefab];
+        enemy.SetAggroSpeed(aggroSpeed);
+        enemy.SetInitialSpeed(aggroSpeed * Random.Range(0f, 0.4f));
+
+        if (enemy.TryGetComponent(out EntityHealth health))
         {
-            Enemy enemy = _enemyPools[prefab].Dequeue();
-            return enemy;
-        } else {
-            Enemy enemy = Instantiate(prefab);
-            enemy.transform.SetParent(transform);
-            return enemy;
+            health.SetMaxHealth(_currentHealthPerType[prefab]);
+        }
+
+        DamageDealer dmg = enemy.GetComponentInChildren<DamageDealer>();
+        if (dmg != null)
+        {
+            dmg.SetDamage(_currentDamagePerType[prefab]);
         }
     }
 
@@ -190,6 +231,13 @@ public class EnemySpawner : MonoBehaviour
 
     void HandleGameDifficultyIncrease()
     {
-        _spawnCooldown *= _spawnCooldownReductionMultiplier;
+        _spawnCooldown = Mathf.Max(_minCooldown, _spawnCooldown - _cooldownReductionPerMinute);
+
+        foreach (Enemy prefab in _enemyPrefabs)
+        {
+            _currentDamagePerType[prefab] = Mathf.Min(_maxDamage, _currentDamagePerType[prefab] + _damageBonusPerMinute);
+            _currentHealthPerType[prefab] = Mathf.Min(_maxHealth, _currentHealthPerType[prefab] + _healthBonusPerMinute);
+            _currentAggroSpeedPerType[prefab] = Mathf.Min(_maxSpeed, _currentAggroSpeedPerType[prefab] + _speedBonusPerMinute);
+        }
     }
 }
